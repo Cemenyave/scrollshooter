@@ -2,6 +2,7 @@
 #pragma once
 
 #include <vector>
+#include <stack>
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
 #include <ClanLib/gl.h>

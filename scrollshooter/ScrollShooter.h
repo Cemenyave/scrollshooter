@@ -1,7 +1,6 @@
-
 #pragma once
 
-class Program
+class ScrollShooter
 {
 public:
 	static int main(const std::vector<CL_String> &args);
