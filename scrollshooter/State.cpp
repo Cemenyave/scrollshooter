@@ -11,7 +11,7 @@ State::~State(void)
 {
 }
 
-void State::Initialize(void)
+void State::Initialize(Engine *rObjEngine)
 {
 }
 
@@ -31,6 +31,6 @@ void State::Update(void)
 {
 }
 	
-void State::Render(void)
+void State::Drow(void)
 {
 }

@@ -12,17 +12,22 @@ class Engine
 
 	
 	StateStack mStateStack;
-		
-	CL_DisplayWindow mWindow;
-	CL_GraphicContext mGc;
-	CL_Font mFont;
-	CL_InputDevice mKeyboard;
-
+	
 	void Drow(void);
 	void InputHandler(void);
 	void Update(void);
+
 public:
 	bool mQuit;
+	
+	CL_GraphicContext mGraphicContext;
+	CL_DisplayWindow mWindow;
+	CL_InputDevice mKeyboard;
+
 	Engine(void);
 	int Loop(void);
+
+	void PushState(State *rNewState);
+	void PopState(void);
+	void ClearStateStack(void);
 };
