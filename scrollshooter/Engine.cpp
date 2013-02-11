@@ -1,5 +1,6 @@
 #include "precomp.h"
 #include "State.h"
+#include "GameObjectManager.h"
 #include "GameObject.h"
 #include "MainState.h"
 #include "Engine.h"
@@ -18,21 +19,18 @@ Engine::Engine(void){
 	mGraphicContext = mWindow.get_gc();
 	mKeyboard = mWindow.get_ic().get_keyboard();
 	
-
 	mFrameRate = 60;	
 	mLustUpdate = CL_System::get_time();
 
-	mStateStack.push_back(StatePtr(new MainState));
+	mGameObjectManager = GameObjectManager();
+	PushState(new MainState);
 }
 
-void Engine::Drow(void){
-	mGraphicContext.clear(CL_Colorf::cadetblue);
- 
-	CL_Draw::line(mGraphicContext, 0, 110, 640, 110, CL_Colorf::yellow);
-	mFont.draw_text(mGraphicContext, 100, 100, "Hello World!", CL_Colorf::lightseagreen);
-
+void Engine::Draw(void)
+{
+	mGraphicContext.clear();
+	mStateStack.back()->Draw(this);
 	mWindow.flip();
- 
 }
 
 void Engine::InputHandler(void){
@@ -51,7 +49,8 @@ void Engine::Update(void){
 		return;
 	}
 	InputHandler();
-	Drow();
+	mStateStack.back()->Update();
+	Draw();
 	mLustUpdate = CL_System::get_time();
 }
 
@@ -62,6 +61,7 @@ int Engine::Loop(void){
 		{
 			Update();
 		}
+		Quit();
 	}
 	catch(CL_Exception &exception)
 	{
@@ -86,7 +86,6 @@ void Engine::PushState(State *rNewState)
 
 	mStateStack.push_back(StatePtr (rNewState));
 	mStateStack.back()->Initialize(this);
-
 }
 
 void Engine::PopState()
@@ -94,7 +93,7 @@ void Engine::PopState()
 	if(!mStateStack.empty())
 	{
 		mStateStack.back()->Pause();
-		mStateStack.back()->Cleanup();
+		mStateStack.back()->Cleanup(this);
 		mStateStack.pop_back();
 
 		if(!mStateStack.empty())
@@ -109,7 +108,12 @@ void Engine::ClearStateStack()
 	while(!mStateStack.empty())
 	{
 		mStateStack.back()->Pause();
-		mStateStack.back()->Cleanup();
+		mStateStack.back()->Cleanup(this);
 		mStateStack.pop_back();
 	}
+}
+
+void Engine::Quit(void)
+{
+	ClearStateStack();
 }

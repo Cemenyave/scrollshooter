@@ -1,15 +1,17 @@
 #pragma once
 #include "state.h"
+#include "GameObject.h"
 class MainState :
 	public State
 {
-	CL_Font mFont;
+protected:
+	GameObject *mRectangle;
 public:
 	MainState(void);
-	virtual ~MainState(void);
+	~MainState(void);
 
 	void Initialize(Engine *rObjEngine);
-	void Cleanup(void);
-	void Drow(void);
+	void Cleanup(Engine *rObjEngine);
+	void Update(void);
 };
 

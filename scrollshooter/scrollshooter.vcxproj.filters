@@ -13,6 +13,9 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="MainState.cpp" />
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precomp.h" />
@@ -27,6 +30,9 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="MainState.h" />
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
