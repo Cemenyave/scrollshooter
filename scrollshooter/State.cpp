@@ -20,7 +20,15 @@ void State::Pause(void){}
 
 void State::Resume(void){}
 
-void State::Update(void){}
+void State::Update(Engine *rObjEngine){
+	for(mGameObjectIter = mGameObjects.begin(); mGameObjectIter != mGameObjects.end(); ++mGameObjectIter){
+		if(*mGameObjectIter != 0){
+			if((*mGameObjectIter)->mSpawnState){
+				(*mGameObjectIter)->Update(rObjEngine);
+			}
+		}
+	}
+}
 
 void State::Draw(Engine *rObjEngine){
 	for(mGameObjectIter = mGameObjects.begin(); mGameObjectIter != mGameObjects.end(); ++mGameObjectIter){

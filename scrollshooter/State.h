@@ -2,9 +2,6 @@
 #include "Engine.h"
 #include "GameObject.h"
 
-/// <summary>
-/// 
-/// </summary>
 class State
 {
 	typedef std::shared_ptr<GameObject> GameObjectPtr;
@@ -20,7 +17,7 @@ public:
 	virtual void Cleanup(Engine *rObjEngine);
 	virtual void Pause(void);
 	virtual void Resume(void);
-	virtual void Update(void);
+	virtual void Update(Engine *rObjEngine);
 	virtual void Draw(Engine *rObjEngine);
 
 	

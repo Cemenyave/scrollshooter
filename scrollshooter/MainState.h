@@ -15,6 +15,7 @@ public:
 
 	void Initialize(Engine *rObjEngine);
 	void Cleanup(Engine *rObjEngine);
-	void Update(void);
+	void Update(Engine *rObjEngine);
+	void Test1ClickHandler(void);
 };
 

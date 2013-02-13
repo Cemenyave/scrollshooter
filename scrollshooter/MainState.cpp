@@ -25,6 +25,7 @@ void MainState::Initialize(Engine *rObjEngine)
 
 	mRectangle = new GameObject(this);
 	AddGameObject(mRectangle);
+	mRectangle->mSprite = CL_Sprite(rObjEngine->mGraphicContext, "Boat", &rObjEngine->mResourceManager);
 	mRectangle->mHeight = 100.0f;
 	mRectangle->mWidth = 100.0f;
 	mRectangle->Spawn(300.0f, 300.0f);
@@ -37,7 +38,14 @@ void MainState::Cleanup(Engine *rObjEngine)
 	State::Cleanup(rObjEngine);
 }
 
-void MainState::Update(void)
-{
-	
+void MainState::Update(Engine *rObjEngine){
+	State::Update(rObjEngine);
+	if(mTest1Button->mOnClick){
+		Test1ClickHandler();
+	}
+}
+
+void MainState::Test1ClickHandler(){
+	mRectangle->mCoordX += 3.0f;
+	mRectangle->mCoordY += 3.0f;
 }

@@ -18,4 +18,5 @@ public:
 	virtual bool Spawn(const float rCoordX, const float rCoordY);
 	virtual void Draw(Engine *rObjEngine);
 	virtual void Destroy(State *rState);
+	virtual void Update(Engine *rObjEngine);
 };

@@ -17,9 +17,13 @@ Engine::Engine(void){
  
 	mGraphicContext = mWindow.get_gc();
 	mKeyboard = mWindow.get_ic().get_keyboard();
+	mMouse = mWindow.get_ic().get_mouse();
 	
 	mFrameRate = 60;	
 	mLustUpdate = CL_System::get_time();
+	
+	mFileSystem = CL_VirtualFileSystem("resources.zip", true);
+	mResourceManager = CL_ResourceManager("resources.xml", mFileSystem.get_root_directory());
 
 	PushState(new MainState);
 }
@@ -47,7 +51,7 @@ void Engine::Update(void){
 		return;
 	}
 	InputHandler();
-	mStateStack.back()->Update();
+	mStateStack.back()->Update(this);
 	Draw();
 	mLustUpdate = CL_System::get_time();
 }

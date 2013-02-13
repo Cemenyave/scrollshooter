@@ -11,9 +11,11 @@ class ObjectButton :
 public:
 	ObjectButton(State * const  rState);
 	~ObjectButton(void);
-	bool mHovered;
+	bool mOnHover;
+	bool mOnClick;
 	virtual void HoverEventHandler(Engine *rOgjEngine);
 	virtual void ClickEventHandler(Engine *rOgjEngine);
 	//void SetHoverHandler(Handler *rObjHandler);
 	//void SetClickHandler(Handler *rObjHandler);
+	void Update(Engine *rObjEngine);
 };
