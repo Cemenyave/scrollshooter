@@ -12,9 +12,26 @@
     <ClCompile Include="State.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="MainState.cpp" />
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectButton.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Handler.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="MainState.cpp">
+      <Filter>MainState</Filter>
+    </ClCompile>
+    <ClCompile Include="ClickTest1ButtonHandler.cpp">
+      <Filter>MainState\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="HandlerManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Test1Button.cpp">
+      <Filter>MainState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -29,14 +46,37 @@
     <ClInclude Include="State.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="MainState.h" />
     <ClInclude Include="GameObjectManager.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectButton.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Handler.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="MainState.h">
+      <Filter>MainState</Filter>
+    </ClInclude>
+    <ClInclude Include="ClickTest1ButtonHandler.h">
+      <Filter>MainState\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="HandlerManager.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Test1Button.h">
+      <Filter>MainState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
       <UniqueIdentifier>{4214ab1b-237d-4701-a089-6677daf57ac7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainState">
+      <UniqueIdentifier>{e8dffbb6-eed2-4377-a126-8ad038b3da7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainState\Handlers">
+      <UniqueIdentifier>{d50de0bd-c6c7-4aed-8908-efc4a2f55b4c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

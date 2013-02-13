@@ -7,12 +7,11 @@
 /// </summary>
 class State
 {
-	typedef std::shared_ptr<GameObject> GameObjectShPtr;
-	typedef std::vector<GameObjectShPtr> GameObjectsVector;
+	typedef std::shared_ptr<GameObject> GameObjectPtr;
+	typedef std::vector<GameObjectPtr> GameObjectsVector;
 
 	GameObjectsVector mGameObjects;
 	GameObjectsVector::iterator mGameObjectIter;
-
 public:
 	State(void);
 	virtual ~State(void);
@@ -22,8 +21,9 @@ public:
 	virtual void Pause(void);
 	virtual void Resume(void);
 	virtual void Update(void);
-	void Draw(Engine *rObjEngine);
+	virtual void Draw(Engine *rObjEngine);
 
+	
 	void AddGameObject(GameObject *rGameObject);
 	void RemoveGameObject(GameObject *rGameObject);
 	void RemoveAllGameObjects();

@@ -1,6 +1,5 @@
 #include "precomp.h"
 #include "State.h"
-#include "GameObjectManager.h"
 #include "GameObject.h"
 #include "MainState.h"
 #include "Engine.h"
@@ -22,7 +21,6 @@ Engine::Engine(void){
 	mFrameRate = 60;	
 	mLustUpdate = CL_System::get_time();
 
-	mGameObjectManager = GameObjectManager();
 	PushState(new MainState);
 }
 

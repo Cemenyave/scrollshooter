@@ -63,25 +63,35 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ClickTest1ButtonHandler.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="Handler.cpp" />
+    <ClCompile Include="HandlerManager.cpp" />
     <ClCompile Include="MainState.cpp" />
+    <ClCompile Include="ObjectButton.cpp" />
     <ClCompile Include="precomp.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ScrollShooter.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="Test1Button.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClickTest1ButtonHandler.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="Handler.h" />
+    <ClInclude Include="HandlerManager.h" />
     <ClInclude Include="MainState.h" />
+    <ClInclude Include="ObjectButton.h" />
     <ClInclude Include="precomp.h" />
     <ClInclude Include="ScrollShooter.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="Test1Button.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

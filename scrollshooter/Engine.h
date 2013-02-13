@@ -1,5 +1,4 @@
 #pragma once
-#include "GameObjectManager.h"
 
 class State;
 
@@ -12,7 +11,6 @@ class Engine
 	int mLustUpdate;
 
 	StateStack mStateStack;
-	GameObjectManager mGameObjectManager;
 
 	void Draw(void);
 	void InputHandler(void);
