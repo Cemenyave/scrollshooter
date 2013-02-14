@@ -68,7 +68,6 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="Handler.cpp" />
-    <ClCompile Include="HandlerManager.cpp" />
     <ClCompile Include="MainState.cpp" />
     <ClCompile Include="ObjectButton.cpp" />
     <ClCompile Include="precomp.cpp">
@@ -85,7 +84,6 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="Handler.h" />
-    <ClInclude Include="HandlerManager.h" />
     <ClInclude Include="MainState.h" />
     <ClInclude Include="ObjectButton.h" />
     <ClInclude Include="precomp.h" />

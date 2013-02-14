@@ -15,7 +15,5 @@ public:
 	bool mOnClick;
 	virtual void HoverEventHandler(Engine *rOgjEngine);
 	virtual void ClickEventHandler(Engine *rOgjEngine);
-	//void SetHoverHandler(Handler *rObjHandler);
-	//void SetClickHandler(Handler *rObjHandler);
 	void Update(Engine *rObjEngine);
 };

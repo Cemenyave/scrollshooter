@@ -16,9 +16,14 @@ class Engine
 	void InputHandler(void);
 	void Update(void);
 	CL_VirtualFileSystem mFileSystem;
+
+	bool mResourceManagerExists;
+	const float CountFps(void);
 public:
 	bool mQuit;
-	
+	int mWindowWidth;
+	int mWindowHeight;
+
 	CL_GraphicContext mGraphicContext;
 	CL_DisplayWindow mWindow;
 	CL_InputDevice mKeyboard;
@@ -31,6 +36,7 @@ public:
 	void PushState(State *rNewState);
 	void PopState(void);
 	void ClearStateStack(void);
+	CL_ResourceManager *GetResources(void);
 
 	void Quit(void);
 };

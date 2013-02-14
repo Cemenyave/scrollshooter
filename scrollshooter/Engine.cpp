@@ -8,12 +8,15 @@
 
 Engine::Engine(void){
 	mQuit = false;
+	mResourceManagerExists = false;
+	mWindowWidth = 640;
+	mWindowHeight = 400;
 
 	CL_SetupCore setup_core;
 	CL_SetupDisplay setup_display;
 	CL_SetupGL setup_gl;
 
-	mWindow = CL_DisplayWindow("Hello World", 640, 480);
+	mWindow = CL_DisplayWindow("Hello World", mWindowWidth, mWindowHeight);
  
 	mGraphicContext = mWindow.get_gc();
 	mKeyboard = mWindow.get_ic().get_keyboard();
@@ -22,9 +25,6 @@ Engine::Engine(void){
 	mFrameRate = 60;	
 	mLustUpdate = CL_System::get_time();
 	
-	mFileSystem = CL_VirtualFileSystem("resources.zip", true);
-	mResourceManager = CL_ResourceManager("resources.xml", mFileSystem.get_root_directory());
-
 	PushState(new MainState);
 }
 
@@ -44,9 +44,7 @@ void Engine::InputHandler(void){
 
 void Engine::Update(void){
 	CL_KeepAlive::process();
-	int curTime = CL_System::get_time();
-	int deltaTime = curTime - mLustUpdate;
-	if(deltaTime < 1000/mFrameRate)
+	if(CountFps() > mFrameRate)
 	{
 		return;
 	}
@@ -59,8 +57,7 @@ void Engine::Update(void){
 int Engine::Loop(void){
 	try
 	{
-		while (!mQuit)
-		{
+		while (!mQuit){
 			Update();
 		}
 		Quit();
@@ -71,11 +68,18 @@ int Engine::Loop(void){
 		CL_ConsoleWindow console("Console", 80, 160);
 		CL_Console::write_line("Exception caught: " + exception.get_message_and_stack_trace());
 		console.display_close_message();
- 
 		return -1;
 	}
- 
 	return 0;
+}
+
+const float Engine::CountFps(){
+	int curTime = CL_System::get_time();
+	int deltaTime = curTime - mLustUpdate;
+	if(deltaTime < 1){
+		return 1000.0f;
+	}
+	return 1000.0f/deltaTime;
 }
 
 void Engine::PushState(State *rNewState)
@@ -90,32 +94,39 @@ void Engine::PushState(State *rNewState)
 	mStateStack.back()->Initialize(this);
 }
 
-void Engine::PopState()
-{
-	if(!mStateStack.empty())
-	{
+void Engine::PopState(){
+	if(!mStateStack.empty()){
 		mStateStack.back()->Pause();
 		mStateStack.back()->Cleanup(this);
 		mStateStack.pop_back();
 
-		if(!mStateStack.empty())
-		{
+		if(!mStateStack.empty()){
 			mStateStack.back()->Resume();
 		}
 	}
 }
 
-void Engine::ClearStateStack()
-{
-	while(!mStateStack.empty())
-	{
+void Engine::ClearStateStack(){
+	while(!mStateStack.empty()){
 		mStateStack.back()->Pause();
 		mStateStack.back()->Cleanup(this);
 		mStateStack.pop_back();
 	}
 }
 
-void Engine::Quit(void)
-{
+CL_ResourceManager *Engine::GetResources(void){
+	if(!mResourceManagerExists){
+		/**
+		 *Initialization packed resources
+		mFileSystem = CL_VirtualFileSystem("resources.zip", true);
+		mResourceManager = CL_ResourceManager("resources.xml", mFileSystem.get_root_directory());
+		***/
+		mResourceManager = CL_ResourceManager("resources.xml"); //Initialization unpacked resources
+		mResourceManagerExists = true;
+	}
+	return &mResourceManager;
+}
+
+void Engine::Quit(void){
 	ClearStateStack();
 }

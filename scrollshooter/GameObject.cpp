@@ -7,8 +7,11 @@ GameObject::GameObject(State * const rState){
 	assert(rState != nullptr);
 	mSpawnState = false;
 	mColor = CL_Colorf(255/255.0f, 234/255.0f, 117/255.0f);
-
-
+	mZindex = 1;
+	mWidth = 0;
+	mHeight = 0;
+	mCoordX = 0;
+	mCoordY = 0;
 }
 
 GameObject::~GameObject(){}

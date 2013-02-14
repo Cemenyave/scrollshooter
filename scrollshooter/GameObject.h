@@ -11,6 +11,7 @@ public:
 	float mHeight;
 	float mCoordX;
 	float mCoordY;
+	int mZindex;
 	bool mSpawnState;
 	CL_Colorf mColor;
 	CL_Sprite mSprite;

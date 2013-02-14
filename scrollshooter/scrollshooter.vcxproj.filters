@@ -27,9 +27,6 @@
     <ClCompile Include="ClickTest1ButtonHandler.cpp">
       <Filter>MainState\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="HandlerManager.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Test1Button.cpp">
       <Filter>MainState</Filter>
     </ClCompile>
@@ -60,9 +57,6 @@
     </ClInclude>
     <ClInclude Include="ClickTest1ButtonHandler.h">
       <Filter>MainState\Handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="HandlerManager.h">
-      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Test1Button.h">
       <Filter>MainState</Filter>

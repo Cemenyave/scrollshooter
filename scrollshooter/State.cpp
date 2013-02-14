@@ -2,6 +2,7 @@
 #include "State.h"
 #include "Engine.h"
 #include <algorithm>
+#include <assert.h>
 
 State::State(void){}
 
@@ -21,27 +22,25 @@ void State::Pause(void){}
 void State::Resume(void){}
 
 void State::Update(Engine *rObjEngine){
-	for(mGameObjectIter = mGameObjects.begin(); mGameObjectIter != mGameObjects.end(); ++mGameObjectIter){
-		if(*mGameObjectIter != 0){
-			if((*mGameObjectIter)->mSpawnState){
-				(*mGameObjectIter)->Update(rObjEngine);
-			}
-		}
-	}
+	GameObjectIteration(mBackgroundObjects, UPDATE, rObjEngine);
+	GameObjectIteration(mGameObjects, UPDATE, rObjEngine);
+	GameObjectIteration(mEffectObjects, UPDATE, rObjEngine);
 }
 
 void State::Draw(Engine *rObjEngine){
-	for(mGameObjectIter = mGameObjects.begin(); mGameObjectIter != mGameObjects.end(); ++mGameObjectIter){
-		if(*mGameObjectIter != 0){
-			if((*mGameObjectIter)->mSpawnState){
-				(*mGameObjectIter)->Draw(rObjEngine);
-			}
-		}
-	}
+	GameObjectIteration(mBackgroundObjects, DRAW, rObjEngine);
+	GameObjectIteration(mGameObjects, DRAW, rObjEngine);
+	GameObjectIteration(mEffectObjects, DRAW, rObjEngine);
 }
 
-void State::AddGameObject(GameObject *rGameObject){
-	mGameObjects.push_back(GameObjectPtr(rGameObject));
+void State::AddGameObject(GameObject *rGameObject, const int rType){
+	if(rType == EFFECT){
+		InsertByZindex(rGameObject, mEffectObjects);
+	}else if(rType == GAMEOBJECT){
+		InsertByZindex(rGameObject, mGameObjects);
+	}else if(rType == BACKGROUND){
+		InsertByZindex(rGameObject, mBackgroundObjects);
+	}
 }
 
 void State::RemoveGameObject(GameObject *rGameObject){
@@ -51,8 +50,51 @@ void State::RemoveGameObject(GameObject *rGameObject){
 }
 
 void State::RemoveAllGameObjects(){
-	while(!mGameObjects.empty()){
-		mGameObjects.back()->Destroy(this);
-		mGameObjects.pop_back();
+	ClearGameObjectsVector(mEffectObjects);
+	ClearGameObjectsVector(mGameObjects);
+	ClearGameObjectsVector(mBackgroundObjects);
+}
+
+void State::GameObjectIteration(GameObjectsVector &Set, const int rAction, Engine *rObjEngine){
+	if(Set.size() < 1){
+		return;
+	}
+	for(mGameObjectIter = Set.begin(); mGameObjectIter != Set.end(); ++mGameObjectIter){
+		if(*mGameObjectIter != 0){
+			if((*mGameObjectIter)->mSpawnState){
+				if(rAction == UPDATE){
+					(*mGameObjectIter)->Update(rObjEngine);
+				}else if(rAction == DRAW){
+					(*mGameObjectIter)->Draw(rObjEngine);
+				}
+			}
+		}
+	}
+}
+
+void const State::InsertByZindex(GameObject * const rGameObject, GameObjectsVector &Set){
+	assert(rGameObject != nullptr);
+	if(Set.empty()){
+		Set.push_back(GameObjectPtr(rGameObject));
+		return;
+	}
+	if(Set.back()->mZindex <= rGameObject->mZindex){
+		Set.push_back(GameObjectPtr(rGameObject));
+	}else if(Set.front()->mZindex >= rGameObject->mZindex){
+		Set.insert(Set.begin(), GameObjectPtr(rGameObject));
+	}else{
+		for(mGameObjectIter = Set.begin(); mGameObjectIter != Set.end(); mGameObjectIter++){
+			if((*mGameObjectIter)->mZindex < rGameObject->mZindex){
+				Set.insert(mGameObjectIter, rGameObject);
+				break;
+			}
+		}
+	}
+}
+
+void State::ClearGameObjectsVector(GameObjectsVector &Set){
+	while(!Set.empty()){
+		Set.back()->Destroy(this);
+		Set.pop_back();
 	}
 }

@@ -16,9 +16,6 @@ ObjectButton::~ObjectButton(void){
 }
 
 void ObjectButton::ClickEventHandler(Engine *rObjEngine){
-//	if(mClickHandler){
-//		mClickHandler->Handle();
-//	}
 }
 
 void ObjectButton::HoverEventHandler(Engine *rObjEngine){
@@ -43,11 +40,3 @@ void ObjectButton::Update(Engine *rObjEngine){
 		mColor = CL_Colorf(255/255.0f, 234/255.0f, 117/255.0f);
 	}
 }
-//
-//void ObjectButton::SetClickHandler(Handler *rObjHandler){
-//	mClickHandler = rObjHandler;
-//}
-//
-//void ObjectButton::SetHoverHandler(Handler *rObjHandler){
-//	mHoverHandler = rObjHandler;
-//}
