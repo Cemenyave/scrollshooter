@@ -13,7 +13,7 @@ class State
 	GameObjectsVector::iterator mGameObjectIter;
 protected:
 	void GameObjectIteration(GameObjectsVector &Set, const int rAction, Engine *rObjEngine);
-	void const InsertByZindex(GameObject * const rGameObject, GameObjectsVector &Set);
+	void const InsertByZindex(GameObjectPtr const rGameObject, GameObjectsVector &Set);
 public:
 	State(void);
 	virtual ~State(void);
@@ -28,7 +28,13 @@ public:
 	virtual void Update(Engine *rObjEngine);
 	virtual void Draw(Engine *rObjEngine);
 
-	void AddGameObject(GameObject *rGameObject, const int rType);
+	template <class _Type> std::shared_ptr<_Type> GameObjectFactory(const int rType){
+		std::shared_ptr<_Type> temp = std::shared_ptr<_Type>(new _Type);
+		AddGameObject(temp, rType);
+		return temp;
+	};
+	
+	void AddGameObject(GameObjectPtr rGameObject, const int rType);
 	void RemoveGameObject(GameObject *rGameObject);
 	void RemoveAllGameObjects();
 	void ClearGameObjectsVector(GameObjectsVector &Set);

@@ -3,8 +3,7 @@
 #include "State.h"
 #include <assert.h>
 
-GameObject::GameObject(State * const rState){
-	assert(rState != nullptr);
+GameObject::GameObject(){
 	mSpawnState = false;
 	mColor = CL_Colorf(255/255.0f, 234/255.0f, 117/255.0f);
 	mZindex = 1;

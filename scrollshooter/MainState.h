@@ -7,8 +7,10 @@ class MainState :
 	public State
 {
 protected:
-	GameObject *mRectangle;
-	ObjectButton *mTest1Button;
+	typedef std::shared_ptr<GameObject> GameObjectPtr;
+
+	GameObjectPtr mRectangle;
+	std::shared_ptr<ObjectButton> mTest1Button;
 public:
 	MainState(void);
 	~MainState(void);

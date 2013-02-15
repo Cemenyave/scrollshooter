@@ -1,15 +1,12 @@
 #pragma once
-#include "gameobject.h"
+#include "GameObject.h"
 #include "Engine.h"
-#include "Handler.h"
 
 class ObjectButton :
 	public GameObject
 {
-	Handler *mClickHandler;
-	Handler *mHoverHandler;
 public:
-	ObjectButton(State * const  rState);
+	ObjectButton();
 	~ObjectButton(void);
 	bool mOnHover;
 	bool mOnClick;

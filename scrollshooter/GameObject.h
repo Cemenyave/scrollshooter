@@ -4,7 +4,7 @@
 class GameObject
 {
 public:
-	GameObject(State * const rState = nullptr);
+	GameObject();
 	virtual ~GameObject(void);
 
 	float mWidth;

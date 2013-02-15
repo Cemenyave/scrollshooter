@@ -33,7 +33,7 @@ void State::Draw(Engine *rObjEngine){
 	GameObjectIteration(mEffectObjects, DRAW, rObjEngine);
 }
 
-void State::AddGameObject(GameObject *rGameObject, const int rType){
+void State::AddGameObject(GameObjectPtr rGameObject, const int rType){
 	if(rType == EFFECT){
 		InsertByZindex(rGameObject, mEffectObjects);
 	}else if(rType == GAMEOBJECT){
@@ -72,7 +72,7 @@ void State::GameObjectIteration(GameObjectsVector &Set, const int rAction, Engin
 	}
 }
 
-void const State::InsertByZindex(GameObject * const rGameObject, GameObjectsVector &Set){
+void const State::InsertByZindex(GameObjectPtr const rGameObject, GameObjectsVector &Set){
 	assert(rGameObject != nullptr);
 	if(Set.empty()){
 		Set.push_back(GameObjectPtr(rGameObject));

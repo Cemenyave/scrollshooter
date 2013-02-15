@@ -24,12 +24,6 @@
     <ClCompile Include="MainState.cpp">
       <Filter>MainState</Filter>
     </ClCompile>
-    <ClCompile Include="ClickTest1ButtonHandler.cpp">
-      <Filter>MainState\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Test1Button.cpp">
-      <Filter>MainState</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precomp.h" />
@@ -55,12 +49,6 @@
     <ClInclude Include="MainState.h">
       <Filter>MainState</Filter>
     </ClInclude>
-    <ClInclude Include="ClickTest1ButtonHandler.h">
-      <Filter>MainState\Handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="Test1Button.h">
-      <Filter>MainState</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -68,9 +56,6 @@
     </Filter>
     <Filter Include="MainState">
       <UniqueIdentifier>{e8dffbb6-eed2-4377-a126-8ad038b3da7b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainState\Handlers">
-      <UniqueIdentifier>{d50de0bd-c6c7-4aed-8908-efc4a2f55b4c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
