@@ -24,6 +24,9 @@
     <ClCompile Include="MainState.cpp">
       <Filter>MainState</Filter>
     </ClCompile>
+    <ClCompile Include="DebugTool.cpp">
+      <Filter>Engine\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precomp.h" />
@@ -49,6 +52,9 @@
     <ClInclude Include="MainState.h">
       <Filter>MainState</Filter>
     </ClInclude>
+    <ClInclude Include="DebugTool.h">
+      <Filter>Engine\Debug</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -56,6 +62,9 @@
     </Filter>
     <Filter Include="MainState">
       <UniqueIdentifier>{e8dffbb6-eed2-4377-a126-8ad038b3da7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug">
+      <UniqueIdentifier>{33699b77-2e3e-45ec-9383-e7dcbe84f534}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

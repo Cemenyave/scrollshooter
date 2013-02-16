@@ -3,11 +3,13 @@
 #include "GameObject.h"
 #include "MainState.h"
 #include "Engine.h"
+#include "DebugTool.h"
 #include <assert.h>
 #include <ClanLib/application.h>
 
 Engine::Engine(void){
 	mQuit = false;
+	fps = 0;
 	mResourceManagerExists = false;
 	mWindowWidth = 640;
 	mWindowHeight = 400;
@@ -17,41 +19,36 @@ Engine::Engine(void){
 	CL_SetupGL setup_gl;
 
 	mWindow = CL_DisplayWindow("Hello World", mWindowWidth, mWindowHeight);
- 
 	mGraphicContext = mWindow.get_gc();
 	mKeyboard = mWindow.get_ic().get_keyboard();
 	mMouse = mWindow.get_ic().get_mouse();
-	
 	mFrameRate = 60;	
 	mLustUpdate = CL_System::get_time();
-	
+	slot_key_down.connect(mKeyboard.sig_key_down(), this, &Engine::QiteListener);
+	Debugger = std::shared_ptr<DebugTool>(new DebugTool(this));
 	PushState(new MainState);
 }
 
-void Engine::Draw(void)
-{
+Engine::~Engine(){}
+
+void Engine::Draw(void){
 	mGraphicContext.clear();
 	mStateStack.back()->Draw(this);
+	Debugger->Draw(this);
 	mWindow.flip();
-}
-
-void Engine::InputHandler(void){
-	if(mKeyboard.get_keycode(CL_KEY_ESCAPE)){
-		mQuit = true;
-	}
-	return;
 }
 
 void Engine::Update(void){
 	CL_KeepAlive::process();
-	if(CountFps() > mFrameRate)
+	fps = CountFps();
+	if(fps > mFrameRate)
 	{
 		return;
 	}
-	InputHandler();
 	mStateStack.back()->Update(this);
 	Draw();
 	mLustUpdate = CL_System::get_time();
+	Debugger->Update(this);
 }
 
 int Engine::Loop(void){
@@ -73,7 +70,7 @@ int Engine::Loop(void){
 	return 0;
 }
 
-const float Engine::CountFps(){
+const float Engine::CountFps(void){
 	int curTime = CL_System::get_time();
 	int deltaTime = curTime - mLustUpdate;
 	if(deltaTime < 1){
@@ -129,4 +126,10 @@ CL_ResourceManager *Engine::GetResources(void){
 
 void Engine::Quit(void){
 	ClearStateStack();
+}
+
+void Engine::QiteListener(const CL_InputEvent &event, const CL_InputState &state){
+	if(event.id == CL_KEY_ESCAPE){
+		mQuit = true;
+	}
 }

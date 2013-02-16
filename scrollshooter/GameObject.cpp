@@ -22,13 +22,13 @@ bool GameObject::Spawn(float rCoordX, float rCoordY){
 	return true;
 }
 
-void GameObject::Draw(Engine *rObjEngine){
-		
-		if(!mSprite.is_null()){
-			mSprite.update();
-			mSprite.draw(rObjEngine->mGraphicContext, mCoordX, mCoordY);
-		}
-		CL_Draw::box(rObjEngine->mGraphicContext, mCoordX, mCoordY, mCoordX + mWidth, mCoordY + mHeight, mColor);
+void GameObject::Draw(Engine *rObjEngine){	
+	if(!mSprite.is_null()){
+		mSprite.update();
+		mSprite.draw(rObjEngine->mGraphicContext, mCoordX, mCoordY);
+	}else {
+		CL_Draw::fill(rObjEngine->mGraphicContext, mCoordX, mCoordY, mCoordX + mWidth, mCoordY + mHeight, mColor);
+	}
 }
 
 void GameObject::Update(Engine *rObjEngine){

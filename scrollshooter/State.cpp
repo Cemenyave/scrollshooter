@@ -55,11 +55,12 @@ void State::RemoveAllGameObjects(){
 	ClearGameObjectsVector(mBackgroundObjects);
 }
 
+//TODO refactoring this method. for-loop must be inside switching action. 
 void State::GameObjectIteration(GameObjectsVector &Set, const int rAction, Engine *rObjEngine){
 	if(Set.size() < 1){
 		return;
 	}
-	for(mGameObjectIter = Set.begin(); mGameObjectIter != Set.end(); ++mGameObjectIter){
+	for(GameObjectsVector::iterator mGameObjectIter = Set.begin(); mGameObjectIter != Set.end(); ++mGameObjectIter){
 		if(*mGameObjectIter != 0){
 			if((*mGameObjectIter)->mSpawnState){
 				if(rAction == UPDATE){
@@ -78,12 +79,12 @@ void const State::InsertByZindex(GameObjectPtr const rGameObject, GameObjectsVec
 		Set.push_back(GameObjectPtr(rGameObject));
 		return;
 	}
-	if(Set.back()->mZindex <= rGameObject->mZindex){
+	if(Set.back()->mZindex >= rGameObject->mZindex){
 		Set.push_back(GameObjectPtr(rGameObject));
-	}else if(Set.front()->mZindex >= rGameObject->mZindex){
+	}else if(Set.front()->mZindex <= rGameObject->mZindex){
 		Set.insert(Set.begin(), GameObjectPtr(rGameObject));
 	}else{
-		for(mGameObjectIter = Set.begin(); mGameObjectIter != Set.end(); mGameObjectIter++){
+		for(GameObjectsVector::iterator mGameObjectIter = Set.begin(); mGameObjectIter != Set.end(); mGameObjectIter++){
 			if((*mGameObjectIter)->mZindex < rGameObject->mZindex){
 				Set.insert(mGameObjectIter, rGameObject);
 				break;

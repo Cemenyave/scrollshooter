@@ -10,7 +10,7 @@ class State
 	GameObjectsVector mGameObjects;
 	GameObjectsVector mBackgroundObjects;
 	GameObjectsVector mEffectObjects;
-	GameObjectsVector::iterator mGameObjectIter;
+	GameObjectPtr mBuffer; //buffer for passive sorting
 protected:
 	void GameObjectIteration(GameObjectsVector &Set, const int rAction, Engine *rObjEngine);
 	void const InsertByZindex(GameObjectPtr const rGameObject, GameObjectsVector &Set);
