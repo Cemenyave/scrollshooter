@@ -2,6 +2,10 @@
 #include "Engine.h"
 #include <sstream>
 #include <list>
+#ifdef WIN32
+#include <windows.h>
+#include <Psapi.h>
+#endif
 
 class DebugTool
 {
@@ -17,6 +21,14 @@ class DebugTool
 	void PushLogString(CL_String * rString);
 	void PrintLogStack(Engine * rObjEngine);
 	void PrintFps(Engine * rObjEngine);
+	#ifdef WIN32
+	HANDLE mCurrentProcess;
+	PROCESS_MEMORY_COUNTERS RamData;
+	TOKEN_PRIVILEGES tp;
+	float mMemoryUsage;
+	void CountMemoryUsage(void);
+	void PrintMemoryUsage(Engine * rObjEngine);
+	#endif
 public:
 	DebugTool(Engine *rObjEngine);
 	~DebugTool(void);

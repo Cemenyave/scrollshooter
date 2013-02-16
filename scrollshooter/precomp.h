@@ -14,4 +14,3 @@
 #include <ClanLib/vorbis.h>
 #include <ClanLib/mikmod.h>
 #include <ClanLib/regexp.h>
-#include <ClanLib/csslayout.h>
