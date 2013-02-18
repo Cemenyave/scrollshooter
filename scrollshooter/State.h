@@ -12,7 +12,7 @@ class State
 	GameObjectsVector mEffectObjects;
 	GameObjectPtr mBuffer; //buffer for passive sorting
 protected:
-	void GameObjectIteration(GameObjectsVector &Set, const int rAction, Engine *rObjEngine);
+	void GameObjectIteration(GameObjectsVector &Set, const int rAction);
 	void const InsertByZindex(GameObjectPtr const rGameObject, GameObjectsVector &Set);
 public:
 	State(void);
@@ -21,12 +21,12 @@ public:
 	enum {BACKGROUND, GAMEOBJECT, EFFECT};
 	enum {UPDATE, DRAW};
 
-	virtual void Initialize(Engine *rObjEngine);
-	virtual void Cleanup(Engine *rObjEngine);
+	virtual void Initialize(void);
+	virtual void Cleanup(void);
 	virtual void Pause(void);
 	virtual void Resume(void);
-	virtual void Update(Engine *rObjEngine);
-	virtual void Draw(Engine *rObjEngine);
+	virtual void Update(void);
+	virtual void Draw(void);
 
 	template <class _Type> std::shared_ptr<_Type> GameObjectFactory(const int rType){
 		std::shared_ptr<_Type> temp = std::shared_ptr<_Type>(new _Type);

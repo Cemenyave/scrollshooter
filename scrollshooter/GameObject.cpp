@@ -3,7 +3,7 @@
 #include "State.h"
 #include <assert.h>
 
-GameObject::GameObject(){
+GameObject::GameObject(void){
 	mSpawnState = false;
 	mColor = CL_Colorf(255/255.0f, 234/255.0f, 117/255.0f);
 	mZindex = 1;
@@ -22,19 +22,20 @@ bool GameObject::Spawn(float rCoordX, float rCoordY){
 	return true;
 }
 
-void GameObject::Draw(Engine *rObjEngine){	
+void GameObject::Draw(void){
+	Engine &ObjEngine = Engine::GetEngine();
 	if(!mSprite.is_null()){
 		mSprite.update();
-		mSprite.draw(rObjEngine->mGraphicContext, mCoordX, mCoordY);
+		mSprite.draw(ObjEngine.mGraphicContext, mCoordX, mCoordY);
 	}else {
-		CL_Draw::fill(rObjEngine->mGraphicContext, mCoordX, mCoordY, mCoordX + mWidth, mCoordY + mHeight, mColor);
+		CL_Draw::fill(ObjEngine.mGraphicContext, mCoordX, mCoordY, mCoordX + mWidth, mCoordY + mHeight, mColor);
 	}
 }
 
-void GameObject::Update(Engine *rObjEngine){
+void GameObject::Update(void){
 }
 
-void GameObject::Destroy(State *rState){
+void GameObject::Destroy(void){
 	mSpawnState = false;
 }
 

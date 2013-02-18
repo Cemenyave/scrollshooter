@@ -1,7 +1,7 @@
 #include "precomp.h"
 #include "State.h"
 #include "GameObject.h"
-#include "MainState.h"
+#include "MainMenu.h"
 #include "Engine.h"
 #include "DebugTool.h"
 #include <assert.h>
@@ -11,8 +11,8 @@ Engine::Engine(void){
 	mQuit = false;
 	fps = 0;
 	mResourceManagerExists = false;
-	mWindowWidth = 640;
-	mWindowHeight = 400;
+	mWindowWidth = 800;
+	mWindowHeight = 600;
 
 	CL_SetupCore setup_core;
 	CL_SetupDisplay setup_display;
@@ -25,30 +25,35 @@ Engine::Engine(void){
 	mFrameRate = 60;	
 	mLustUpdate = CL_System::get_time();
 	slot_key_down.connect(mKeyboard.sig_key_down(), this, &Engine::QiteListener);
-	Debugger = std::shared_ptr<DebugTool>(new DebugTool(this));
-	PushState(new MainState);
+	Debugger = std::shared_ptr<DebugTool>(new DebugTool);
+	PushState(new MainMenu);
 }
 
 Engine::~Engine(){}
 
+Engine &Engine::GetEngine(){
+	static Engine Instance;
+	return Instance;
+}
+
 void Engine::Draw(void){
 	mGraphicContext.clear();
-	mStateStack.back()->Draw(this);
-	Debugger->Draw(this);
+	mStateStack.back()->Draw();
+	Debugger->Draw();
 	mWindow.flip();
 }
 
 void Engine::Update(void){
 	CL_KeepAlive::process();
-	fps = CountFps();
+	fps = (int)CountFps();
 	if(fps > mFrameRate)
 	{
 		return;
 	}
-	mStateStack.back()->Update(this);
+	mStateStack.back()->Update();
 	Draw();
 	mLustUpdate = CL_System::get_time();
-	Debugger->Update(this);
+	Debugger->Update();
 }
 
 int Engine::Loop(void){
@@ -88,13 +93,13 @@ void Engine::PushState(State *rNewState)
 	}
 
 	mStateStack.push_back(StatePtr (rNewState));
-	mStateStack.back()->Initialize(this);
+	mStateStack.back()->Initialize();
 }
 
 void Engine::PopState(){
 	if(!mStateStack.empty()){
 		mStateStack.back()->Pause();
-		mStateStack.back()->Cleanup(this);
+		mStateStack.back()->Cleanup();
 		mStateStack.pop_back();
 
 		if(!mStateStack.empty()){
@@ -106,7 +111,7 @@ void Engine::PopState(){
 void Engine::ClearStateStack(){
 	while(!mStateStack.empty()){
 		mStateStack.back()->Pause();
-		mStateStack.back()->Cleanup(this);
+		mStateStack.back()->Cleanup();
 		mStateStack.pop_back();
 	}
 }

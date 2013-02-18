@@ -19,18 +19,18 @@ class DebugTool
 
 	void HandleConsoleStack(void) const;
 	void PushLogString(CL_String * rString);
-	void PrintLogStack(Engine * rObjEngine);
-	void PrintFps(Engine * rObjEngine);
+	void PrintLogStack(void);
+	void PrintFps(void);
 	#ifdef WIN32
 	HANDLE mCurrentProcess;
 	PROCESS_MEMORY_COUNTERS RamData;
 	TOKEN_PRIVILEGES tp;
 	float mMemoryUsage;
 	void CountMemoryUsage(void);
-	void PrintMemoryUsage(Engine * rObjEngine);
+	void PrintMemoryUsage(void);
 	#endif
 public:
-	DebugTool(Engine *rObjEngine);
+	DebugTool(void);
 	~DebugTool(void);
 	
 	int fps;
@@ -44,8 +44,8 @@ public:
 		msg.clear();
 	}
 	void Log(CL_String Message);
-	void Update(Engine * rObjEngine);
-	void Draw(Engine * rObjEngine);
+	void Update(void);
+	void Draw(void);
 	void TildaListener(const CL_InputEvent &event, const CL_InputState &state);
 };
 

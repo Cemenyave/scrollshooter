@@ -12,12 +12,17 @@ class Engine
 	CL_VirtualFileSystem mFileSystem;
 	StateStack mStateStack;
 
+	Engine(void);
+	~Engine(void);
+	Engine(Engine const&);
+	void operator=(Engine const&);
 	void Draw(void);
 	void Update(void);
 	const float CountFps(void);
 	void QiteListener(const CL_InputEvent &event, const CL_InputState &state);
 	void Quit(void);
 public:
+	static Engine Instance;
 	bool mQuit;
 	int fps;
 	int mWindowWidth;
@@ -30,8 +35,7 @@ public:
 	std::shared_ptr<DebugTool> Debugger;
 	CL_SlotContainer slot_key_down;
 
-	Engine(void);
-	~Engine(void);
+	static Engine &GetEngine(void);
 	int Loop(void);
 	void PushState(State *rNewState);
 	void PopState(void);

@@ -15,17 +15,35 @@
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectButton.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Handler.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="MainState.cpp">
-      <Filter>MainState</Filter>
-    </ClCompile>
     <ClCompile Include="DebugTool.cpp">
       <Filter>Engine\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Game\States\MainMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Star.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="ControlsButton.cpp">
+      <Filter>Game\GameObjects\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="NewGameButton.cpp">
+      <Filter>Game\GameObjects\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectButton.cpp">
+      <Filter>Game\GameObjects\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="CreditsButton.cpp">
+      <Filter>Game\GameObjects\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="QuitButton.cpp">
+      <Filter>Game\GameObjects\Buttons</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -43,28 +61,62 @@
     <ClInclude Include="GameObjectManager.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectButton.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Handler.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="MainState.h">
-      <Filter>MainState</Filter>
-    </ClInclude>
     <ClInclude Include="DebugTool.h">
       <Filter>Engine\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Game\States\MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Star.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectButton.h">
+      <Filter>Game\GameObjects\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlsButton.h">
+      <Filter>Game\GameObjects\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="NewGameButton.h">
+      <Filter>Game\GameObjects\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="CreditsButton.h">
+      <Filter>Game\GameObjects\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="QuitButton.h">
+      <Filter>Game\GameObjects\Buttons</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
       <UniqueIdentifier>{4214ab1b-237d-4701-a089-6677daf57ac7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainState">
-      <UniqueIdentifier>{e8dffbb6-eed2-4377-a126-8ad038b3da7b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Debug">
       <UniqueIdentifier>{33699b77-2e3e-45ec-9383-e7dcbe84f534}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{0948586c-5b03-4770-aac2-03a8347a42e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\States">
+      <UniqueIdentifier>{8ecaf935-eac3-43fd-8f95-2eaa1459b0cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObjects">
+      <UniqueIdentifier>{47738554-1f01-4f63-8856-71701d273dae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\States\MainMenu">
+      <UniqueIdentifier>{e8dffbb6-eed2-4377-a126-8ad038b3da7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObjects\Buttons">
+      <UniqueIdentifier>{75ee2b6d-8f28-4a7b-b7b1-fe3b195a5f26}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="scrollshooter.rc" />
   </ItemGroup>
 </Project>

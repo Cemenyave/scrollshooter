@@ -11,9 +11,9 @@ State::~State(void){
 	RemoveAllGameObjects();
 }
 
-void State::Initialize(Engine *rObjEngine){};
+void State::Initialize(void){};
 
-void State::Cleanup(Engine *rObjEngine){
+void State::Cleanup(void){
 	RemoveAllGameObjects();
 }
 
@@ -21,16 +21,16 @@ void State::Pause(void){}
 
 void State::Resume(void){}
 
-void State::Update(Engine *rObjEngine){
-	GameObjectIteration(mBackgroundObjects, UPDATE, rObjEngine);
-	GameObjectIteration(mGameObjects, UPDATE, rObjEngine);
-	GameObjectIteration(mEffectObjects, UPDATE, rObjEngine);
+void State::Update(void){
+	GameObjectIteration(mBackgroundObjects, UPDATE);
+	GameObjectIteration(mGameObjects, UPDATE);
+	GameObjectIteration(mEffectObjects, UPDATE);
 }
 
-void State::Draw(Engine *rObjEngine){
-	GameObjectIteration(mBackgroundObjects, DRAW, rObjEngine);
-	GameObjectIteration(mGameObjects, DRAW, rObjEngine);
-	GameObjectIteration(mEffectObjects, DRAW, rObjEngine);
+void State::Draw(void){
+	GameObjectIteration(mBackgroundObjects, DRAW);
+	GameObjectIteration(mGameObjects, DRAW);
+	GameObjectIteration(mEffectObjects, DRAW);
 }
 
 void State::AddGameObject(GameObjectPtr rGameObject, const int rType){
@@ -56,17 +56,24 @@ void State::RemoveAllGameObjects(){
 }
 
 //TODO refactoring this method. for-loop must be inside switching action. 
-void State::GameObjectIteration(GameObjectsVector &Set, const int rAction, Engine *rObjEngine){
+void State::GameObjectIteration(GameObjectsVector &Set, const int rAction){
 	if(Set.size() < 1){
 		return;
 	}
+	//int lastZindex = 0;
 	for(GameObjectsVector::iterator mGameObjectIter = Set.begin(); mGameObjectIter != Set.end(); ++mGameObjectIter){
 		if(*mGameObjectIter != 0){
 			if((*mGameObjectIter)->mSpawnState){
 				if(rAction == UPDATE){
-					(*mGameObjectIter)->Update(rObjEngine);
+					(*mGameObjectIter)->Update();
 				}else if(rAction == DRAW){
-					(*mGameObjectIter)->Draw(rObjEngine);
+					//if(lastZindex > (*mGameObjectIter)->mZindex){
+						//sorting
+						//mGameObjectIter = Set.begin();
+						//mGameObjectIter--;
+						//continue;
+					//}
+					(*mGameObjectIter)->Draw();
 				}
 			}
 		}
@@ -79,9 +86,9 @@ void const State::InsertByZindex(GameObjectPtr const rGameObject, GameObjectsVec
 		Set.push_back(GameObjectPtr(rGameObject));
 		return;
 	}
-	if(Set.back()->mZindex >= rGameObject->mZindex){
+	if(Set.back()->mZindex <= rGameObject->mZindex){
 		Set.push_back(GameObjectPtr(rGameObject));
-	}else if(Set.front()->mZindex <= rGameObject->mZindex){
+	}else if(Set.front()->mZindex >= rGameObject->mZindex){
 		Set.insert(Set.begin(), GameObjectPtr(rGameObject));
 	}else{
 		for(GameObjectsVector::iterator mGameObjectIter = Set.begin(); mGameObjectIter != Set.end(); mGameObjectIter++){
@@ -95,7 +102,7 @@ void const State::InsertByZindex(GameObjectPtr const rGameObject, GameObjectsVec
 
 void State::ClearGameObjectsVector(GameObjectsVector &Set){
 	while(!Set.empty()){
-		Set.back()->Destroy(this);
+		Set.back()->Destroy();
 		Set.pop_back();
 	}
 }

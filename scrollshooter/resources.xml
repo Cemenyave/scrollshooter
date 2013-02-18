@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<resources>
+<sprite name="stars">
+  <image file="resources/stars.png">
+    <grid size="46,46" array="5,1" />
+  </image>
+  <animation speed="500" loop="yes" pingpong="yes" />
+</sprite>
+<sprite name="new_game_button_on">
+  <image file="resources/new_game_button.png">
+    <grid pos="0,50" size="360,50" array="1,1" />
+  </image>
+</sprite>
+<sprite name="new_game_button_off">
+  <image file="resources/new_game_button.png">
+    <grid pos="0,0" size="360,50" array="1,1" />
+  </image>
+</sprite>
+<sprite name="controls_button_on">
+  <image file="resources/controls_button.png">
+    <grid pos="0,50" size="360,50" array="1,1" />
+  </image>
+</sprite>
+<sprite name="controls_button_off">
+  <image file="resources/controls_button.png">
+    <grid pos="0,0" size="360,50" array="1,1" />
+  </image>
+</sprite>
+<sprite name="credits_button_on">
+  <image file="resources/credits_button.png">
+    <grid pos="0,50" size="360,50" array="1,1" />
+  </image>
+</sprite>
+<sprite name="credits_button_off">
+  <image file="resources/credits_button.png">
+    <grid pos="0,0" size="360,50" array="1,1" />
+  </image>
+</sprite>
+<sprite name="quit_button_on">
+  <image file="resources/quit_button.png">
+    <grid pos="0,50" size="360,50" array="1,1" />
+  </image>
+</sprite>
+<sprite name="quit_button_off">
+  <image file="resources/quit_button.png">
+    <grid pos="0,0" size="360,50" array="1,1" />
+  </image>
+</sprite>
+</resources>

@@ -4,7 +4,7 @@
 class GameObject
 {
 public:
-	GameObject();
+	GameObject(void);
 	virtual ~GameObject(void);
 
 	float mWidth;
@@ -17,7 +17,7 @@ public:
 	CL_Sprite mSprite;
 
 	virtual bool Spawn(const float rCoordX, const float rCoordY);
-	virtual void Draw(Engine *rObjEngine);
-	virtual void Destroy(State *rState);
-	virtual void Update(Engine *rObjEngine);
+	virtual void Draw(void);
+	virtual void Destroy(void);
+	virtual void Update(void);
 };

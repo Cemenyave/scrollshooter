@@ -5,7 +5,7 @@
 
 int ScrollShooter::main(const std::vector<CL_String> &args)
 {
-	Engine Game;
+	Engine &Game = Engine::GetEngine();
 	return Game.Loop();
 }
  

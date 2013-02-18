@@ -3,14 +3,15 @@
 #include <sstream>
 
 
-DebugTool::DebugTool(Engine *rObjEngine){
+DebugTool::DebugTool(){
+	Engine &ObjEngine = Engine::GetEngine();
 	mDisplay = false;
 	mLineHeight = 14;
-	mConsoleFont = CL_Font(rObjEngine->mGraphicContext, "consolas", mLineHeight);
-	mConsoleBottom = rObjEngine->mWindowHeight - 20;
+	mConsoleFont = CL_Font(ObjEngine.mGraphicContext, "consolas", mLineHeight);
+	mConsoleBottom = ObjEngine.mWindowHeight - 20;
 	#ifdef WIN32
 	#endif
-	rObjEngine->slot_key_down.connect(rObjEngine->mKeyboard.sig_key_down(), this, &DebugTool::TildaListener);
+	ObjEngine.slot_key_down.connect(ObjEngine.mKeyboard.sig_key_down(), this, &DebugTool::TildaListener);
 }
 
 DebugTool::~DebugTool(void){
@@ -27,37 +28,41 @@ void DebugTool::PushLogString(CL_String * rString){
 	}
 }
 
-void DebugTool::Update(Engine * rObjEngine){
-	fps = rObjEngine->fps;
+void DebugTool::Update(void){
+	Engine &ObjEngine = Engine::GetEngine();
+	fps = ObjEngine.fps;
 	CountMemoryUsage();
 }
 
-void DebugTool::Draw(Engine * rObjEngine){
+void DebugTool::Draw(void){
 	if(mDisplay){
-		CL_Draw::fill(rObjEngine->mGraphicContext, 10.0f, (float)mConsoleBottom, 260.0f, rObjEngine->mWindowHeight - 175.0f, CL_Colorf(1.0f, 1.0f, 1.0f, 0.07f));
-		PrintLogStack(rObjEngine);
-		PrintFps(rObjEngine);
+		Engine &ObjEngine = Engine::GetEngine();
+		CL_Draw::fill(ObjEngine.mGraphicContext, 10.0f, (float)mConsoleBottom, 260.0f, ObjEngine.mWindowHeight - 175.0f, CL_Colorf(1.0f, 1.0f, 1.0f, 0.07f));
+		PrintLogStack();
+		PrintFps();
 		#ifdef WIN32
-		PrintMemoryUsage(rObjEngine);
+		PrintMemoryUsage();
 		#endif
 	}
 }
 
-void DebugTool::PrintLogStack(Engine * rObjEngine){
+void DebugTool::PrintLogStack(void){
 	if(LogStack.size() == 0){
 		return;
 	}
 	int tab = 20;
 	int line = 1;
+	Engine &ObjEngine = Engine::GetEngine();
 	for(StringList::iterator i = LogStack.begin(); i != LogStack.end(); i++){
-		mConsoleFont.draw_text(rObjEngine->mGraphicContext, tab, mConsoleBottom - line++ * mLineHeight, (*i)->c_str());
+		mConsoleFont.draw_text(ObjEngine.mGraphicContext, tab, mConsoleBottom - line++ * mLineHeight, (*i)->c_str());
 	}
 }
 
-void DebugTool::PrintFps(Engine * rObjEngine){
+void DebugTool::PrintFps(void){
 	std::stringstream stream;
 	stream << fps;
-	mConsoleFont.draw_text(rObjEngine->mGraphicContext, 10, 10, CL_String(stream.str()));
+	Engine &ObjEngine = Engine::GetEngine();
+	mConsoleFont.draw_text(ObjEngine.mGraphicContext, 10, 10, CL_String(stream.str()));
 }
 
 void DebugTool::TildaListener(const CL_InputEvent &event, const CL_InputState &state){
@@ -75,9 +80,10 @@ void DebugTool::CountMemoryUsage(void){
 	}
 }
 
-void DebugTool::PrintMemoryUsage(Engine * rObjEngine){
+void DebugTool::PrintMemoryUsage(void){
 	std::stringstream stream;
 	stream << mMemoryUsage;
-	mConsoleFont.draw_text(rObjEngine->mGraphicContext, 10, 20, CL_String(stream.str() + " MB"));
+	Engine &ObjEngine = Engine::GetEngine();
+	mConsoleFont.draw_text(ObjEngine.mGraphicContext, 10, 20, CL_String(stream.str() + " MB"));
 }
 #endif
