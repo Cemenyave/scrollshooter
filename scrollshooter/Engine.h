@@ -25,6 +25,7 @@ public:
 	static Engine Instance;
 	bool mQuit;
 	int fps;
+	int mDeltaTime;
 	int mWindowWidth;
 	int mWindowHeight;
 	CL_GraphicContext mGraphicContext;
@@ -33,7 +34,7 @@ public:
 	CL_InputDevice mMouse;
 	CL_ResourceManager mResourceManager;
 	std::shared_ptr<DebugTool> Debugger;
-	CL_SlotContainer slot_key_down;
+	CL_SlotContainer mSlotInput;
 
 	static Engine &GetEngine(void);
 	int Loop(void);

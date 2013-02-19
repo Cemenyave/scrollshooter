@@ -1,8 +1,9 @@
 #pragma once
-#include "Engine.h"
+#include "Base.h"
 #include "GameObject.h"
 
-class State
+class State:
+	public Base
 {
 	typedef std::shared_ptr<GameObject> GameObjectPtr;
 	typedef std::vector<GameObjectPtr> GameObjectsVector;

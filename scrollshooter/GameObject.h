@@ -1,7 +1,8 @@
 #pragma once
-#include "Engine.h"
+#include "Base.h"
 
-class GameObject
+class GameObject:
+	public Base
 {
 public:
 	GameObject(void);
@@ -19,5 +20,4 @@ public:
 	virtual bool Spawn(const float rCoordX, const float rCoordY);
 	virtual void Draw(void);
 	virtual void Destroy(void);
-	virtual void Update(void);
 };

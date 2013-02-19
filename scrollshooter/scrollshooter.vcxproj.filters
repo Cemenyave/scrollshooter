@@ -45,6 +45,15 @@
     <ClCompile Include="QuitButton.cpp">
       <Filter>Game\GameObjects\Buttons</Filter>
     </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Base.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precomp.h" />
@@ -91,6 +100,15 @@
     </ClInclude>
     <ClInclude Include="QuitButton.h">
       <Filter>Game\GameObjects\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Base.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

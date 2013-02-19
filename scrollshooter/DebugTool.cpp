@@ -11,7 +11,7 @@ DebugTool::DebugTool(){
 	mConsoleBottom = ObjEngine.mWindowHeight - 20;
 	#ifdef WIN32
 	#endif
-	ObjEngine.slot_key_down.connect(ObjEngine.mKeyboard.sig_key_down(), this, &DebugTool::TildaListener);
+	ObjEngine.mSlotInput.connect(ObjEngine.mKeyboard.sig_key_down(), this, &DebugTool::TildaListener);
 }
 
 DebugTool::~DebugTool(void){

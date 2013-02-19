@@ -24,7 +24,7 @@ Engine::Engine(void){
 	mMouse = mWindow.get_ic().get_mouse();
 	mFrameRate = 60;	
 	mLustUpdate = CL_System::get_time();
-	slot_key_down.connect(mKeyboard.sig_key_down(), this, &Engine::QiteListener);
+	mSlotInput.connect(mKeyboard.sig_key_down(), this, &Engine::QiteListener);
 	Debugger = std::shared_ptr<DebugTool>(new DebugTool);
 	PushState(new MainMenu);
 }
@@ -77,11 +77,11 @@ int Engine::Loop(void){
 
 const float Engine::CountFps(void){
 	int curTime = CL_System::get_time();
-	int deltaTime = curTime - mLustUpdate;
-	if(deltaTime < 1){
+	mDeltaTime = curTime - mLustUpdate;
+	if(mDeltaTime < 1){
 		return 1000.0f;
 	}
-	return 1000.0f/deltaTime;
+	return 1000.0f/mDeltaTime;
 }
 
 void Engine::PushState(State *rNewState)

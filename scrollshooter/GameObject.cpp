@@ -23,16 +23,12 @@ bool GameObject::Spawn(float rCoordX, float rCoordY){
 }
 
 void GameObject::Draw(void){
-	Engine &ObjEngine = Engine::GetEngine();
 	if(!mSprite.is_null()){
 		mSprite.update();
-		mSprite.draw(ObjEngine.mGraphicContext, mCoordX, mCoordY);
+		mSprite.draw(mGraphicContext, mCoordX, mCoordY);
 	}else {
-		CL_Draw::fill(ObjEngine.mGraphicContext, mCoordX, mCoordY, mCoordX + mWidth, mCoordY + mHeight, mColor);
+		CL_Draw::fill(mGraphicContext, mCoordX, mCoordY, mCoordX + mWidth, mCoordY + mHeight, mColor);
 	}
-}
-
-void GameObject::Update(void){
 }
 
 void GameObject::Destroy(void){
