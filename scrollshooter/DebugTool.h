@@ -11,31 +11,32 @@ class DebugTool
 {
 	typedef std::shared_ptr<CL_String> StringPtr;
 	typedef std::list<StringPtr> StringList;
-	StringList LogStack; 
-	CL_Font mConsoleFont;
-
-	int mConsoleBottom;
-	int mLineHeight;
-
+	
+	StringList logStack; 
+	CL_Font consoleFont;
+	int consoleBottom;
+	int lineHeight;
+	CL_Slot displayControl;
+	
 	void HandleConsoleStack(void) const;
 	void PushLogString(CL_String * rString);
 	void PrintLogStack(void);
 	void PrintFps(void);
+
 	#ifdef WIN32
-	HANDLE mCurrentProcess;
-	PROCESS_MEMORY_COUNTERS RamData;
+	HANDLE currentProcess;
+	PROCESS_MEMORY_COUNTERS ramData;
 	TOKEN_PRIVILEGES tp;
-	float mMemoryUsage;
+	float memoryUsage;
 	void CountMemoryUsage(void);
 	void PrintMemoryUsage(void);
 	#endif
 public:
+	int fps;
+	bool display;
+
 	DebugTool(void);
 	~DebugTool(void);
-	
-	int fps;
-	bool mDisplay;
-
 	template<typename _Type>
 	void Log(_Type const Message){
 		std::stringstream msg;

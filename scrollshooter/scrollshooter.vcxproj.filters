@@ -54,6 +54,9 @@
     <ClCompile Include="Base.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precomp.h" />
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="Base.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Game\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

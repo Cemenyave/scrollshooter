@@ -1,12 +1,12 @@
 #include "precomp.h"
 #include "Base.h"
 
-
 Base::Base(void):
-	mGraphicContext(Engine::GetEngine().mGraphicContext),
-	mKeyboard(Engine::GetEngine().mKeyboard),
-	mMouse(Engine::GetEngine().mMouse),
-	mSlotInput(Engine::GetEngine().mSlotInput)
+	graphicContext(Engine::GetEngine().graphicContext),
+	keyboard(Engine::GetEngine().keyboard),
+	mouse(Engine::GetEngine().mouse),
+	resources(*Engine::GetEngine().GetResources()),
+	deltaTime(Engine::GetEngine().deltaTime)
 {
 	
 }
@@ -16,6 +16,4 @@ Base::~Base(void){
 }
 
 void Base::Update(void){
-	Engine &ObjEngine = Engine::GetEngine();
-	mDeltaTime = ObjEngine.mDeltaTime;
 }

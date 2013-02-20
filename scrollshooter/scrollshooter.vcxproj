@@ -68,6 +68,7 @@
     <ClCompile Include="CreditsButton.cpp" />
     <ClCompile Include="DebugTool.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="Handler.cpp" />
@@ -92,6 +93,7 @@
     <ClInclude Include="CreditsButton.h" />
     <ClInclude Include="DebugTool.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="Handler.h" />

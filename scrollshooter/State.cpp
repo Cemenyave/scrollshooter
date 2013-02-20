@@ -16,7 +16,9 @@ void State::Cleanup(void){
 	RemoveAllGameObjects();
 }
 
-void State::Pause(void){}
+void State::Pause(void){
+
+}
 
 void State::Resume(void){}
 
@@ -61,12 +63,12 @@ void State::GameObjectIteration(GameObjectsVector &Set, const int rAction){
 	}
 	//int lastZindex = 0;
 	for(GameObjectsVector::iterator mGameObjectIter = Set.begin(); mGameObjectIter != Set.end(); ++mGameObjectIter){
-		if(*mGameObjectIter != 0){
-			if((*mGameObjectIter)->mSpawnState){
+		if(Set.size() != 0){
+			if((*mGameObjectIter)->spawnState){
 				if(rAction == UPDATE){
 					(*mGameObjectIter)->Update();
 				}else if(rAction == DRAW){
-					//if(lastZindex > (*mGameObjectIter)->mZindex){
+					//if(lastZindex > (*mGameObjectIter)->zIndex){
 						//sorting
 						//mGameObjectIter = Set.begin();
 						//mGameObjectIter--;
@@ -85,13 +87,13 @@ void const State::InsertByZindex(GameObjectPtr const rGameObject, GameObjectsVec
 		Set.push_back(GameObjectPtr(rGameObject));
 		return;
 	}
-	if(Set.back()->mZindex <= rGameObject->mZindex){
+	if(Set.back()->zIndex <= rGameObject->zIndex){
 		Set.push_back(GameObjectPtr(rGameObject));
-	}else if(Set.front()->mZindex >= rGameObject->mZindex){
+	}else if(Set.front()->zIndex >= rGameObject->zIndex){
 		Set.insert(Set.begin(), GameObjectPtr(rGameObject));
 	}else{
 		for(GameObjectsVector::iterator mGameObjectIter = Set.begin(); mGameObjectIter != Set.end(); mGameObjectIter++){
-			if((*mGameObjectIter)->mZindex < rGameObject->mZindex){
+			if((*mGameObjectIter)->zIndex < rGameObject->zIndex){
 				Set.insert(mGameObjectIter, rGameObject);
 				break;
 			}

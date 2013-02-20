@@ -3,35 +3,54 @@
 #include "State.h"
 #include <assert.h>
 
-GameObject::GameObject(void){
-	mSpawnState = false;
-	mColor = CL_Colorf(255/255.0f, 234/255.0f, 117/255.0f);
-	mZindex = 1;
-	mWidth = 0;
-	mHeight = 0;
-	mCoordX = 0;
-	mCoordY = 0;
+GameObject::GameObject(void):
+	width(0),
+	height(0),
+	coordX(0),
+	coordY(0),
+	zIndex(0),
+	spawnState(false),
+	color(),
+	sprite()
+{
+	zIndex = 1;
+	color = CL_Colorf(255/255.0f, 234/255.0f, 117/255.0f);
 }
 
 GameObject::~GameObject(){}
 
 bool GameObject::Spawn(float rCoordX, float rCoordY){
-	mCoordX = rCoordX;
-	mCoordY = rCoordY;
-	mSpawnState = true;
+	coordX = rCoordX;
+	coordY = rCoordY;
+	spawnState = true;
 	return true;
 }
 
 void GameObject::Draw(void){
-	if(!mSprite.is_null()){
-		mSprite.update();
-		mSprite.draw(mGraphicContext, mCoordX, mCoordY);
+	if(!sprite.is_null()){
+		sprite.update();
+		sprite.draw(graphicContext, coordX, coordY);
 	}else {
-		CL_Draw::fill(mGraphicContext, mCoordX, mCoordY, mCoordX + mWidth, mCoordY + mHeight, mColor);
+		CL_Draw::fill(graphicContext, coordX, coordY, coordX + width, coordY + height, color);
 	}
 }
 
 void GameObject::Destroy(void){
-	mSpawnState = false;
+	spawnState = false;
 }
 
+//dose not work with rotating object
+float const GameObject::GetCentrePointX(void){
+	if(spawnState){
+		return coordX - width / 2;
+	}
+	return -1.0f;
+}
+
+//dose not work with rotating object
+float const GameObject::GetCentrePointY(void){
+	if(spawnState){
+		return coordY - width / 2;
+	}
+	return -1.0f;
+}

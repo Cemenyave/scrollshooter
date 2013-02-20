@@ -6,16 +6,17 @@ class ObjectButton :
 	public GameObject
 {
 protected:
-	CL_Sprite mSpriteCursorOn;
-	CL_Sprite mSpriteCursorOff;
+	CL_Sprite spriteCursorOn;
+	CL_Sprite spriteCursorOff;
+	CL_Slot handler;
 public:
 	ObjectButton();
 	bool mOnHover;
 	bool mOnClick;
 	
 	template <typename _Type>
-	void SetHandler(_Type *instance, void (_Type::*handler)(CL_InputEvent const &event, CL_InputState const &state)){
-		mSlotInput.connect(mKeyboard.sig_key_down(), instance, handler);
+	void SetHandler(_Type *instance, void (_Type::*handlerFunction)(CL_InputEvent const &event, CL_InputState const &state)){
+		handler = keyboard.sig_key_down().connect(instance, handlerFunction);
 	}
 	
 	virtual void Hover(void);

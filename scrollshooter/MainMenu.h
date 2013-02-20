@@ -19,7 +19,7 @@ protected:
 	std::vector<std::shared_ptr<GameObject>> mStars;
 	enum{NEWGAMEBUTTON, CONTROLSBUTTON, CREDITSBUTTON, QUITBUTTON};
 	int mCursor;
-
+	CL_Slot menuControl;
 	void GenerateBackground(void);
 	void GenerateMenu(void);
 public:
@@ -27,6 +27,7 @@ public:
 	~MainMenu(void);
 
 	void Initialize(void);
+	void Pause(void);
 	void Cleanup(void);
 	void NewGameHandler(CL_InputEvent const &event, CL_InputState const &state);
 	void ControlsHandler(CL_InputEvent const &event, CL_InputState const &state);

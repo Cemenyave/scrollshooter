@@ -10,21 +10,20 @@
 Engine::Engine(void){
 	mQuit = false;
 	fps = 0;
-	mResourceManagerExists = false;
-	mWindowWidth = 800;
-	mWindowHeight = 600;
+	resourceManagerExists = false;
+	windowWidth = 800;
+	windowHeight = 600;
 
 	CL_SetupCore setup_core;
 	CL_SetupDisplay setup_display;
 	CL_SetupGL setup_gl;
 
-	mWindow = CL_DisplayWindow("Hello World", mWindowWidth, mWindowHeight);
-	mGraphicContext = mWindow.get_gc();
-	mKeyboard = mWindow.get_ic().get_keyboard();
-	mMouse = mWindow.get_ic().get_mouse();
-	mFrameRate = 60;	
-	mLustUpdate = CL_System::get_time();
-	mSlotInput.connect(mKeyboard.sig_key_down(), this, &Engine::QiteListener);
+	window = CL_DisplayWindow("Hello World", windowWidth, windowHeight);
+	graphicContext = window.get_gc();
+	keyboard = window.get_ic().get_keyboard();
+	mouse = window.get_ic().get_mouse();
+	frameRate = 60;	
+	lustUpdate = CL_System::get_time();
 	Debugger = std::shared_ptr<DebugTool>(new DebugTool);
 	PushState(new MainMenu);
 }
@@ -37,22 +36,22 @@ Engine &Engine::GetEngine(){
 }
 
 void Engine::Draw(void){
-	mGraphicContext.clear();
-	mStateStack.back()->Draw();
+	graphicContext.clear();
+	stateStack.back()->Draw();
 	Debugger->Draw();
-	mWindow.flip();
+	window.flip();
 }
 
 void Engine::Update(void){
 	CL_KeepAlive::process();
 	fps = (int)CountFps();
-	if(fps > mFrameRate)
+	if(fps > frameRate)
 	{
 		return;
 	}
-	mStateStack.back()->Update();
+	stateStack.back()->Update();
 	Draw();
-	mLustUpdate = CL_System::get_time();
+	lustUpdate = CL_System::get_time();
 	Debugger->Update();
 }
 
@@ -77,56 +76,56 @@ int Engine::Loop(void){
 
 const float Engine::CountFps(void){
 	int curTime = CL_System::get_time();
-	mDeltaTime = curTime - mLustUpdate;
-	if(mDeltaTime < 1){
+	deltaTime = curTime - lustUpdate;
+	if(deltaTime < 1){
 		return 1000.0f;
 	}
-	return 1000.0f/mDeltaTime;
+	return 1000.0f/deltaTime;
 }
 
 void Engine::PushState(State *rNewState)
 {
 	assert(rNewState != nullptr);
 
-	if(!mStateStack.empty()){
-		mStateStack.back()->Pause();
+	if(!stateStack.empty()){
+		stateStack.back()->Pause();
 	}
 
-	mStateStack.push_back(StatePtr (rNewState));
-	mStateStack.back()->Initialize();
+	stateStack.push_back(StatePtr (rNewState));
+	stateStack.back()->Initialize();
 }
 
-void Engine::PopState(){
-	if(!mStateStack.empty()){
-		mStateStack.back()->Pause();
-		mStateStack.back()->Cleanup();
-		mStateStack.pop_back();
+void Engine::PopState(void){
+	if(!stateStack.empty()){
+		stateStack.back()->Pause();
+		stateStack.back()->Cleanup();
+		stateStack.pop_back();
 
-		if(!mStateStack.empty()){
-			mStateStack.back()->Resume();
+		if(!stateStack.empty()){
+			stateStack.back()->Resume();
 		}
 	}
 }
 
 void Engine::ClearStateStack(){
-	while(!mStateStack.empty()){
-		mStateStack.back()->Pause();
-		mStateStack.back()->Cleanup();
-		mStateStack.pop_back();
+	while(!stateStack.empty()){
+		stateStack.back()->Pause();
+		stateStack.back()->Cleanup();
+		stateStack.pop_back();
 	}
 }
 
 CL_ResourceManager *Engine::GetResources(void){
-	if(!mResourceManagerExists){
+	if(!resourceManagerExists){
 		/**
 		 *Initialization packed resources
 		mFileSystem = CL_VirtualFileSystem("resources.zip", true);
 		mResourceManager = CL_ResourceManager("resources.xml", mFileSystem.get_root_directory());
 		***/
-		mResourceManager = CL_ResourceManager("resources.xml"); //Initialization unpacked resources
-		mResourceManagerExists = true;
+		resourceManager = CL_ResourceManager("resources.xml"); //Initialization unpacked resources
+		resourceManagerExists = true;
 	}
-	return &mResourceManager;
+	return &resourceManager;
 }
 
 void Engine::Quit(void){

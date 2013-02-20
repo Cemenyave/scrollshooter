@@ -8,16 +8,20 @@ public:
 	GameObject(void);
 	virtual ~GameObject(void);
 
-	float mWidth;
-	float mHeight;
-	float mCoordX;
-	float mCoordY;
-	int mZindex;
-	bool mSpawnState;
-	CL_Colorf mColor;
-	CL_Sprite mSprite;
+	float width;
+	float height;
+	float coordX;
+	float coordY;
+	int zIndex;
+	bool spawnState;
+	CL_Colorf color;
+	CL_Sprite sprite;
 
 	virtual bool Spawn(const float rCoordX, const float rCoordY);
 	virtual void Draw(void);
 	virtual void Destroy(void);
+	//dose not work with rotating object
+	virtual float const GetCentrePointX(void);
+	//dose not work with rotating object
+	virtual float const GetCentrePointY(void);
 };

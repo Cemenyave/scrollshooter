@@ -3,11 +3,11 @@
 class Base
 {
 public:
-	int mDeltaTime;
-	CL_GraphicContext &mGraphicContext;
-	CL_InputDevice &mKeyboard;
-	CL_InputDevice &mMouse;
-	CL_SlotContainer &mSlotInput;
+	int &deltaTime;
+	CL_GraphicContext &graphicContext;
+	CL_InputDevice &keyboard;
+	CL_InputDevice &mouse;
+	CL_ResourceManager &resources;
 
 	Base(void);
 	virtual ~Base(void);

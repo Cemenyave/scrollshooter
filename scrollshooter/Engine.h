@@ -6,11 +6,11 @@ class Engine
 {
 	typedef std::shared_ptr<State> StatePtr;
 	typedef std::vector<StatePtr> StateStack;
-	int mFrameRate;
-	int mLustUpdate;
-	bool mResourceManagerExists;
-	CL_VirtualFileSystem mFileSystem;
-	StateStack mStateStack;
+	int frameRate;
+	int lustUpdate;
+	bool resourceManagerExists;
+	CL_VirtualFileSystem fileSystem;
+	StateStack stateStack;
 
 	Engine(void);
 	~Engine(void);
@@ -25,16 +25,15 @@ public:
 	static Engine Instance;
 	bool mQuit;
 	int fps;
-	int mDeltaTime;
-	int mWindowWidth;
-	int mWindowHeight;
-	CL_GraphicContext mGraphicContext;
-	CL_DisplayWindow mWindow;
-	CL_InputDevice mKeyboard;
-	CL_InputDevice mMouse;
-	CL_ResourceManager mResourceManager;
+	int deltaTime;
+	int windowWidth;
+	int windowHeight;
+	CL_GraphicContext graphicContext;
+	CL_DisplayWindow window;
+	CL_InputDevice keyboard;
+	CL_InputDevice mouse;
+	CL_ResourceManager resourceManager;
 	std::shared_ptr<DebugTool> Debugger;
-	CL_SlotContainer mSlotInput;
 
 	static Engine &GetEngine(void);
 	int Loop(void);

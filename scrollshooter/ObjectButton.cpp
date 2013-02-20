@@ -1,18 +1,19 @@
 #include "precomp.h"
 #include "ObjectButton.h"
 
-ObjectButton::ObjectButton(){
+ObjectButton::ObjectButton():
+	spriteCursorOn(),
+	spriteCursorOff()
+{
 	mOnHover = false;
 	mOnClick = false;
 }
 
-
-
 void ObjectButton::Hover(void){
 	mOnHover = mOnHover ? false : true;
 	if(mOnHover){
-		mSprite = mSpriteCursorOn;
+		sprite = spriteCursorOn;
 	}else{
-		mSprite = mSpriteCursorOff;
+		sprite = spriteCursorOff;
 	}
 }

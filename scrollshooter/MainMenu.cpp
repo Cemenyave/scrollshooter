@@ -3,15 +3,22 @@
 #include "Engine.h"
 #include "GameObject.h"
 #include "Star.h"
+#include "Level.h"
 #include "DebugTool.h"
 
-MainMenu::MainMenu(void){}
+MainMenu::MainMenu(void){
+	
+}
 
 MainMenu::~MainMenu(void){}
 
 void MainMenu::Initialize(){
 	GenerateBackground();
 	GenerateMenu();
+}
+
+void MainMenu::Pause(void){
+	menuControl.disable();
 }
 
 void MainMenu::Cleanup(void){
@@ -21,21 +28,21 @@ void MainMenu::Cleanup(void){
 void MainMenu::GenerateBackground(void){
 	Engine &ObjEngine = Engine::GetEngine();
 	mFillBackGround = GameObjectFactory<GameObject>(BACKGROUND);
-	mFillBackGround->mWidth = (float)ObjEngine.mWindowWidth;
-	mFillBackGround->mHeight = (float)ObjEngine.mWindowHeight;
-	mFillBackGround->mColor = CL_Colorf::black;
+	mFillBackGround->width = (float)ObjEngine.windowWidth;
+	mFillBackGround->height = (float)ObjEngine.windowHeight;
+	mFillBackGround->color = CL_Colorf::black;
 	mFillBackGround->Spawn(0, 0);
 
 	for(int i = 0; i < 30; i++){
 		mStars.push_back(GameObjectFactory<Star>(BACKGROUND));
-		mStars.back()->Spawn((float)(rand() % (ObjEngine.mWindowWidth - 40) + 20), (float)(rand() % (ObjEngine.mWindowHeight - 40) + 20));
+		mStars.back()->Spawn((float)(rand() % (ObjEngine.windowWidth - 40) + 20), (float)(rand() % (ObjEngine.windowHeight - 40) + 20));
 	}
 }
 
 void MainMenu::GenerateMenu(void){
 	mCursor = NEWGAMEBUTTON;
-	Engine &ObjEngine = Engine::GetEngine();
-	ObjEngine.slot_key_down.connect(ObjEngine.mKeyboard.sig_key_down(), this, &MainMenu::NavigationHandler);
+	menuControl = keyboard.sig_key_down().connect(this, &MainMenu::NavigationHandler);
+	menuControl.enable();
 
 	mNewGameButton = GameObjectFactory<NewGameButton>(GAMEOBJECT);
 	mNewGameButton->Spawn(220.0f, 150.0f);
@@ -60,6 +67,7 @@ void MainMenu::NewGameHandler(CL_InputEvent const &event, CL_InputState const &s
 		if(event.id ==  CL_KEY_ENTER){
 			Engine &ObjEngine = Engine::GetEngine();
 			ObjEngine.Debugger->Log("New Game");
+			ObjEngine.PushState(new Level);
 			//ObjEngine.PushState();
 		}
 	}
