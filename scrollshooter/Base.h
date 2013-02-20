@@ -7,7 +7,7 @@ public:
 	CL_GraphicContext &graphicContext;
 	CL_InputDevice &keyboard;
 	CL_InputDevice &mouse;
-	CL_ResourceManager &resources;
+	CL_ResourceManager *resources;
 
 	Base(void);
 	virtual ~Base(void);

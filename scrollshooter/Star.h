@@ -1,8 +1,8 @@
 #pragma once
-#include "GameObject.h"
+#include "Entity.h"
 
 class Star :
-	public GameObject
+	public Entity
 {
 public:
 	Star(void);

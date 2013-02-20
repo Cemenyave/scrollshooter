@@ -11,6 +11,7 @@ class Engine
 	bool resourceManagerExists;
 	CL_VirtualFileSystem fileSystem;
 	StateStack stateStack;
+	CL_Slot quitHandler;
 
 	Engine(void);
 	~Engine(void);
@@ -23,7 +24,7 @@ class Engine
 	void Quit(void);
 public:
 	static Engine Instance;
-	bool mQuit;
+	bool quit;
 	int fps;
 	int deltaTime;
 	int windowWidth;
@@ -34,6 +35,9 @@ public:
 	CL_InputDevice mouse;
 	CL_ResourceManager resourceManager;
 	std::shared_ptr<DebugTool> Debugger;
+	CL_SetupCore setup_core;
+	CL_SetupDisplay setup_display;
+	CL_SetupGL setup_gl;
 
 	static Engine &GetEngine(void);
 	int Loop(void);

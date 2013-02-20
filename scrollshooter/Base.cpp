@@ -5,7 +5,7 @@ Base::Base(void):
 	graphicContext(Engine::GetEngine().graphicContext),
 	keyboard(Engine::GetEngine().keyboard),
 	mouse(Engine::GetEngine().mouse),
-	resources(*Engine::GetEngine().GetResources()),
+	resources(Engine::GetEngine().GetResources()),
 	deltaTime(Engine::GetEngine().deltaTime)
 {
 	

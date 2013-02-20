@@ -13,12 +13,27 @@ MainMenu::MainMenu(void){
 MainMenu::~MainMenu(void){}
 
 void MainMenu::Initialize(){
+	State::Initialize();
 	GenerateBackground();
 	GenerateMenu();
 }
 
 void MainMenu::Pause(void){
+	State::Pause();
 	menuControl.disable();
+	mNewGameButton->Disable();
+	mControlsButton->Disable();
+	mCreditsButton->Disable();
+	mQuitButton->Disable();
+}
+
+void MainMenu::Resume(void){
+	State::Resume();
+	menuControl.enable();
+	mNewGameButton->Enable();
+	mControlsButton->Enable();
+	mCreditsButton->Enable();
+	mQuitButton->Enable();
 }
 
 void MainMenu::Cleanup(void){

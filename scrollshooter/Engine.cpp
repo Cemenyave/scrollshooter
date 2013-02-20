@@ -7,16 +7,33 @@
 #include <assert.h>
 #include <ClanLib/application.h>
 
-Engine::Engine(void){
-	mQuit = false;
+Engine::Engine(void):
+	setup_core(),
+	setup_display(),
+	setup_gl(),
+	quit(false),
+	fps(0),
+	deltaTime(0),
+	windowWidth(0),
+	windowHeight(0),
+	graphicContext(),
+	window(),
+	keyboard(),
+	mouse(),
+	resourceManager(),
+	frameRate(0),
+	lustUpdate(0),
+	resourceManagerExists(false),
+	fileSystem(),
+	stateStack(),
+	quitHandler(),
+	Debugger()
+{
+	quit = false;
 	fps = 0;
 	resourceManagerExists = false;
 	windowWidth = 800;
 	windowHeight = 600;
-
-	CL_SetupCore setup_core;
-	CL_SetupDisplay setup_display;
-	CL_SetupGL setup_gl;
 
 	window = CL_DisplayWindow("Hello World", windowWidth, windowHeight);
 	graphicContext = window.get_gc();
@@ -24,6 +41,7 @@ Engine::Engine(void){
 	mouse = window.get_ic().get_mouse();
 	frameRate = 60;	
 	lustUpdate = CL_System::get_time();
+	quitHandler = keyboard.sig_key_down().connect(this, &Engine::QiteListener);
 	Debugger = std::shared_ptr<DebugTool>(new DebugTool);
 	PushState(new MainMenu);
 }
@@ -58,7 +76,7 @@ void Engine::Update(void){
 int Engine::Loop(void){
 	try
 	{
-		while (!mQuit){
+		while (!quit){
 			Update();
 		}
 		Quit();
@@ -134,6 +152,6 @@ void Engine::Quit(void){
 
 void Engine::QiteListener(const CL_InputEvent &event, const CL_InputState &state){
 	if(event.id == CL_KEY_ESCAPE){
-		mQuit = true;
+		quit = true;
 	}
 }

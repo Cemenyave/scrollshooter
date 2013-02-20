@@ -4,11 +4,18 @@
 #include "DebugTool.h"
 
 
-Player::Player(void){
+Player::Player(void):
+	idleSprite(),
+	turnLeftSprite(),
+	turnRightSprite()
+{
+	//turnLeftSprite = CL_Sprite(graphicContext, "player_turn_left", &resources);
+	//turnRightSprite = CL_Sprite(graphicContext, "player_turn_right", &resources);
+	idleSprite = CL_Sprite(graphicContext, "player_idle", resources);
 	HitPoints = 3;
-	maxVelocity = 0.0f;
-	width = 30.0f;
-	height = 30.0f;
+	width = 41.0f;
+	height = 64.0f;
+	sprite = idleSprite;
 }
 
 

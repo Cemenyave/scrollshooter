@@ -17,3 +17,11 @@ void ObjectButton::Hover(void){
 		sprite = spriteCursorOff;
 	}
 }
+
+void ObjectButton::Disable(void){
+	handler.disable();
+}
+
+void ObjectButton::Enable(void){
+	handler.enable();
+}

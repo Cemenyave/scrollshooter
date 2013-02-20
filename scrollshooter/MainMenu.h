@@ -28,6 +28,7 @@ public:
 
 	void Initialize(void);
 	void Pause(void);
+	void Resume(void);
 	void Cleanup(void);
 	void NewGameHandler(CL_InputEvent const &event, CL_InputState const &state);
 	void ControlsHandler(CL_InputEvent const &event, CL_InputState const &state);

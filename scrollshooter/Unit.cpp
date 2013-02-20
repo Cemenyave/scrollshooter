@@ -5,6 +5,7 @@
 Unit::Unit(void) :
 	HitPoints(0)	
 {
+	/*
 	std::vector<CL_Contour> contourvector;
 	
 	CL_Contour c1;
@@ -16,4 +17,5 @@ Unit::Unit(void) :
 	contourvector.back().get_points().push_back(CL_Pointf(0.0f, 0.0f));
 
 	CL_CollisionOutline outline(contourvector, 10, 10);
+	*/
 }

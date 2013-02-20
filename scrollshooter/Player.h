@@ -3,6 +3,9 @@
 class Player:
 	public Unit
 {
+	CL_Sprite turnLeftSprite;
+	CL_Sprite turnRightSprite;
+	CL_Sprite idleSprite;
 public:
 	Player(void);
 	~Player(void);

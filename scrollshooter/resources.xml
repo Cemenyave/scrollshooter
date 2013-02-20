@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 <sprite name="stars">
   <image file="resources/stars.png">
@@ -44,6 +44,21 @@
 <sprite name="quit_button_off">
   <image file="resources/quit_button.png">
     <grid pos="0,0" size="360,50" array="1,1" />
+  </image>
+</sprite>
+<sprite name="player_idle">
+  <image file="resources/player_idle.png">
+    <grid pos="0,0" size="41,64" array="1,1" />
+  </image>
+</sprite>
+<sprite name="player_turn_left">
+  <image file="resources/player_turn_left.png">
+    <grid pos="0,0" size="41,64" array="2,1" />
+  </image>
+</sprite>
+<sprite name="player_turn_right">
+  <image file="resources/player_turn_right.png">
+    <grid pos="0,0" size="41,64" array="2,1" />
   </image>
 </sprite>
 </resources>
