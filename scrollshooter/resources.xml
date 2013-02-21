@@ -47,18 +47,19 @@
   </image>
 </sprite>
 <sprite name="player_idle">
-  <image file="resources/player_idle.png">
-    <grid pos="0,0" size="41,64" array="1,1" />
+  <image file="resources/player.png">
+    <grid pos="82,0" size="41,64" array="1,1" />
   </image>
 </sprite>
-<sprite name="player_turn_left">
-  <image file="resources/player_turn_left.png">
-    <grid pos="0,0" size="41,64" array="2,1" />
+<sprite name="player_turn_left_from_idle">
+  <image file="resources/player.png">
+    <grid pos="0,0" size="41,64" array="3,1" />
   </image>
+  <animation speed="100" loop="no" pingpong="no" on_finish="first_frame" direction="backward"/>
 </sprite>
-<sprite name="player_turn_right">
-  <image file="resources/player_turn_right.png">
-    <grid pos="0,0" size="41,64" array="2,1" />
+<sprite name="player_turn_right_from_idle">
+  <image file="resources/player.png">
+    <grid pos="82,0" size="41,64" array="3,1" />
   </image>
+  <animation speed="100" loop="no" pingpong="no" on_finish="last_frame"/>
 </sprite>
-</resources>

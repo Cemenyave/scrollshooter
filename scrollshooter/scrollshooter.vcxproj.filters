@@ -57,6 +57,9 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Game\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="CL_SpriteExt.cpp">
+      <Filter>Engine\Extentions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precomp.h" />
@@ -116,6 +119,9 @@
     <ClInclude Include="Entity.h">
       <Filter>Game\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="CL_SpriteExt.h">
+      <Filter>Engine\Extentions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -138,6 +144,9 @@
     </Filter>
     <Filter Include="Game\GameObjects\Buttons">
       <UniqueIdentifier>{75ee2b6d-8f28-4a7b-b7b1-fe3b195a5f26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Extentions">
+      <UniqueIdentifier>{50cff246-61e5-4616-ab1c-ecb2aff77178}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

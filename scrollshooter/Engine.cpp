@@ -39,7 +39,7 @@ Engine::Engine(void):
 	graphicContext = window.get_gc();
 	keyboard = window.get_ic().get_keyboard();
 	mouse = window.get_ic().get_mouse();
-	frameRate = 60;	
+	frameRate = 300;	
 	lustUpdate = CL_System::get_time();
 	quitHandler = keyboard.sig_key_down().connect(this, &Engine::QiteListener);
 	Debugger = std::shared_ptr<DebugTool>(new DebugTool);

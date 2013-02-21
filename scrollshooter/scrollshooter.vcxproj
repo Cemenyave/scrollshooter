@@ -64,6 +64,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Base.cpp" />
+    <ClCompile Include="CL_SpriteExt.cpp" />
     <ClCompile Include="ControlsButton.cpp" />
     <ClCompile Include="CreditsButton.cpp" />
     <ClCompile Include="DebugTool.cpp" />
@@ -89,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base.h" />
+    <ClInclude Include="CL_SpriteExt.h" />
     <ClInclude Include="ControlsButton.h" />
     <ClInclude Include="CreditsButton.h" />
     <ClInclude Include="DebugTool.h" />

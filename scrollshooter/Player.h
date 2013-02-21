@@ -3,9 +3,19 @@
 class Player:
 	public Unit
 {
-	CL_Sprite turnLeftSprite;
-	CL_Sprite turnRightSprite;
+	const static int TURNING_LEFT = -1;
+	const static int TURNING_RIGHT = 1;
+	const static int STANDING = 0;
+
+	int currentState;
+	int currentSprite;
+	CL_Sprite turnLeftFromIdleSprite;
+	CL_Sprite turnRightFromIdleSprite;
 	CL_Sprite idleSprite;
+
+	void Animate(void);
+	void SetSprite(CL_Sprite newSprite);
+	void ReverseAnimation(void);
 public:
 	Player(void);
 	~Player(void);
