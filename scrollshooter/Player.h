@@ -21,6 +21,7 @@ public:
 	~Player(void);
 
 	void Update(void);
+	void Destroy(void);
 	void ControlKeyDownHandler(CL_InputEvent const &event, CL_InputState const &state);
 	void ControlKeyUpHandler(CL_InputEvent const &event, CL_InputState const &state);
 };

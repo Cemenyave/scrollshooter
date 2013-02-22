@@ -21,22 +21,13 @@
     <ClCompile Include="DebugTool.cpp">
       <Filter>Engine\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Game\GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="MainMenu.cpp">
       <Filter>Game\States\MainMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="Star.cpp">
-      <Filter>Game\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="ControlsButton.cpp">
       <Filter>Game\GameObjects\Buttons</Filter>
     </ClCompile>
     <ClCompile Include="NewGameButton.cpp">
-      <Filter>Game\GameObjects\Buttons</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectButton.cpp">
       <Filter>Game\GameObjects\Buttons</Filter>
     </ClCompile>
     <ClCompile Include="CreditsButton.cpp">
@@ -57,8 +48,17 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Game\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="CL_SpriteExt.cpp">
-      <Filter>Engine\Extentions</Filter>
+    <ClCompile Include="Player.cpp">
+      <Filter>Game\GameObjects\Entitys</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectButton.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Game\GameObjects\Entitys</Filter>
+    </ClCompile>
+    <ClCompile Include="Star.cpp">
+      <Filter>Game\GameObjects\Entitys</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,19 +82,10 @@
     <ClInclude Include="DebugTool.h">
       <Filter>Engine\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Game\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="MainMenu.h">
       <Filter>Game\States\MainMenu</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Star.h">
-      <Filter>Game\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectButton.h">
-      <Filter>Game\GameObjects\Buttons</Filter>
-    </ClInclude>
     <ClInclude Include="ControlsButton.h">
       <Filter>Game\GameObjects\Buttons</Filter>
     </ClInclude>
@@ -119,8 +110,17 @@
     <ClInclude Include="Entity.h">
       <Filter>Game\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="CL_SpriteExt.h">
-      <Filter>Engine\Extentions</Filter>
+    <ClInclude Include="Player.h">
+      <Filter>Game\GameObjects\Entitys</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectButton.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Game\GameObjects\Entitys</Filter>
+    </ClInclude>
+    <ClInclude Include="Star.h">
+      <Filter>Game\GameObjects\Entitys</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -145,8 +145,8 @@
     <Filter Include="Game\GameObjects\Buttons">
       <UniqueIdentifier>{75ee2b6d-8f28-4a7b-b7b1-fe3b195a5f26}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Extentions">
-      <UniqueIdentifier>{50cff246-61e5-4616-ab1c-ecb2aff77178}</UniqueIdentifier>
+    <Filter Include="Game\GameObjects\Entitys">
+      <UniqueIdentifier>{8856a5ee-88cf-40c1-8169-c726fe5d6407}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

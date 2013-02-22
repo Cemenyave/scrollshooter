@@ -5,9 +5,11 @@
 class Unit :
 	public Entity
 {
+protected:
+	int hitPoints;
 public:
-	int HitPoints;
-
 	Unit(void);
+	void Update(void);
+	void TakeDamage(int);
 };
 

@@ -3,7 +3,7 @@
 
 
 Unit::Unit(void) :
-	HitPoints(0)	
+	hitPoints(0)	
 {
 	/*
 	std::vector<CL_Contour> contourvector;
@@ -18,4 +18,15 @@ Unit::Unit(void) :
 
 	CL_CollisionOutline outline(contourvector, 10, 10);
 	*/
+}
+
+void Unit::Update(void){
+	Entity::Update();
+	if(hitPoints <= 0){
+		Destroy();
+	}
+}
+
+void Unit::TakeDamage(int damage){
+	hitPoints -= damage;
 }

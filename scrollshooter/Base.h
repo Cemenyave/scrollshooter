@@ -12,5 +12,6 @@ public:
 	Base(void);
 	virtual ~Base(void);
 	virtual void Update(void);
+	virtual void Draw(void);
 };
 

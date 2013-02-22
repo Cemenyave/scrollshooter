@@ -1,8 +1,8 @@
 #pragma once
-#include "Base.h"
+#include "GameComponent.h"
 
 class GameObject:
-	public Base
+	public GameComponent
 {
 public:
 	GameObject(void);

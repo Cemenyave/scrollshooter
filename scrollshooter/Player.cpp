@@ -12,13 +12,12 @@ Player::Player(void):
 	idleSprite = CL_Sprite(graphicContext, "player_idle", resources);
 	turnLeftFromIdleSprite = CL_Sprite(graphicContext, "player_turn_left_from_idle", resources);
 	turnRightFromIdleSprite = CL_Sprite(graphicContext, "player_turn_right_from_idle", resources);
-	HitPoints = 3;
+	hitPoints = 3;
 	width = 41.0f;
 	height = 64.0f;
 	currentState = Player::STANDING;
 	sprite.clone(idleSprite);
 }
-
 
 Player::~Player(void){
 }
@@ -42,6 +41,11 @@ void Player::Update(void){
 		velocityX = 0.0f;
 	}
 	Animate();
+}
+
+void Player::Destroy(void){
+	Unit::Destroy();
+	Engine::GetEngine().Debugger->Log("Player was destroyed");
 }
 
 void Player::Animate(void){
