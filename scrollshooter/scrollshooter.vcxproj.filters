@@ -63,6 +63,15 @@
     <ClCompile Include="GameObjectGroup.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="CompositeIterator.cpp">
+      <Filter>Engine\Iterator</Filter>
+    </ClCompile>
+    <ClCompile Include="NullIterator.cpp">
+      <Filter>Engine\Iterator</Filter>
+    </ClCompile>
+    <ClCompile Include="Iterator.cpp">
+      <Filter>Engine\Iterator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precomp.h" />
@@ -128,6 +137,15 @@
     <ClInclude Include="GameObjectGroup.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="CompositeIterator.h">
+      <Filter>Engine\Iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="NullIterator.h">
+      <Filter>Engine\Iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="Iterator.h">
+      <Filter>Engine\Iterator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -153,6 +171,9 @@
     </Filter>
     <Filter Include="Game\GameObjects\Entitys">
       <UniqueIdentifier>{8856a5ee-88cf-40c1-8169-c726fe5d6407}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Iterator">
+      <UniqueIdentifier>{35d2958a-1f60-40bc-8f4e-5b7bd02c490c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

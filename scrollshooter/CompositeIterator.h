@@ -1,7 +1,9 @@
 #pragma once
 #include "GameComponent.h"
+#include "Iterator.h"
 
-class CompositeIterator
+class CompositeIterator: 
+	public Iterator
 {
 public:
 	//type definitions
@@ -14,7 +16,8 @@ public:
 	CompositeIterator(gameIterator topLevelIterator);
 	~CompositeIterator(void);
 
-	void Next(void);
-
+	std::shared_ptr<GameComponent> Next(void);
+	bool HasNext(void);
+	void Remvoe(void);
 };
 

@@ -64,6 +64,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Base.cpp" />
+    <ClCompile Include="CompositeIterator.cpp" />
     <ClCompile Include="ControlsButton.cpp" />
     <ClCompile Include="CreditsButton.cpp" />
     <ClCompile Include="DebugTool.cpp" />
@@ -74,9 +75,11 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectGroup.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="Iterator.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="NewGameButton.cpp" />
+    <ClCompile Include="NullIterator.cpp" />
     <ClCompile Include="ObjectButton.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="precomp.cpp">
@@ -91,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base.h" />
+    <ClInclude Include="CompositeIterator.h" />
     <ClInclude Include="ControlsButton.h" />
     <ClInclude Include="CreditsButton.h" />
     <ClInclude Include="DebugTool.h" />
@@ -101,9 +105,11 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectGroup.h" />
     <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="Iterator.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="NewGameButton.h" />
+    <ClInclude Include="NullIterator.h" />
     <ClInclude Include="ObjectButton.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="precomp.h" />

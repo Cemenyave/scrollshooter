@@ -1,5 +1,6 @@
 #include "precomp.h"
 #include "GameComponent.h"
+#include "NullIterator.h"
 
 
 GameComponent::GameComponent(void):
@@ -27,4 +28,8 @@ void GameComponent::GetChild(void){
 
 bool GameComponent::HasChild(void){
 	return false;
+}
+
+Iterator GameComponent::CreateIterator(){
+	iterator = new NullIterator;
 }
