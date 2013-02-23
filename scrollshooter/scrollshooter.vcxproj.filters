@@ -15,9 +15,6 @@
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Handler.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="DebugTool.cpp">
       <Filter>Engine\Debug</Filter>
     </ClCompile>
@@ -60,6 +57,12 @@
     <ClCompile Include="Star.cpp">
       <Filter>Game\GameObjects\Entitys</Filter>
     </ClCompile>
+    <ClCompile Include="GameComponent.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectGroup.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precomp.h" />
@@ -74,9 +77,6 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectManager.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Handler.h">
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="DebugTool.h">
@@ -121,6 +121,12 @@
     </ClInclude>
     <ClInclude Include="Star.h">
       <Filter>Game\GameObjects\Entitys</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponent.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectGroup.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

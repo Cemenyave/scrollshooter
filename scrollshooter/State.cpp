@@ -3,11 +3,24 @@
 #include <algorithm>
 #include <assert.h>
 
-State::State(void){}
+State::State(void):
+	rootGroup(new GameObjectGroup),
+	backgroundGroup(new GameObjectGroup),
+	gameObjectGroup(new GameObjectGroup),
+	uiGroup(new GameObjectGroup)
+{
+	backgroundGroup->priority = 1;
+	gameObjectGroup->priority = 2;
+	uiGroup->priority = 3;
+
+	rootGroup->Add(backgroundGroup);
+	rootGroup->Add(gameObjectGroup);
+	rootGroup->Add(uiGroup);
+}
 
 
 State::~State(void){
-	RemoveAllGameObjects();
+	rootGroup->ClearGroup();
 }
 
 void State::Initialize(void){};
@@ -23,6 +36,8 @@ void State::Pause(void){
 void State::Resume(void){}
 
 void State::Update(void){
+	rootGroup->Update();
+
 	GameObjectIteration(mBackgroundObjects, UPDATE);
 	GameObjectIteration(mGameObjects, UPDATE);
 	GameObjectIteration(mEffectObjects, UPDATE);
@@ -32,16 +47,6 @@ void State::Draw(void){
 	GameObjectIteration(mBackgroundObjects, DRAW);
 	GameObjectIteration(mGameObjects, DRAW);
 	GameObjectIteration(mEffectObjects, DRAW);
-}
-
-void State::AddGameObject(GameObjectPtr rGameObject, const int rType){
-	if(rType == EFFECT){
-		InsertByZindex(rGameObject, mEffectObjects);
-	}else if(rType == GAMEOBJECT){
-		InsertByZindex(rGameObject, mGameObjects);
-	}else if(rType == BACKGROUND){
-		InsertByZindex(rGameObject, mBackgroundObjects);
-	}
 }
 
 void State::RemoveGameObject(GameObject *rGameObject){
@@ -76,26 +81,6 @@ void State::GameObjectIteration(GameObjectsVector &Set, const int rAction){
 					//}
 					(*mGameObjectIter)->Draw();
 				}
-			}
-		}
-	}
-}
-
-void const State::InsertByZindex(GameObjectPtr const rGameObject, GameObjectsVector &Set){
-	assert(rGameObject != nullptr);
-	if(Set.empty()){
-		Set.push_back(GameObjectPtr(rGameObject));
-		return;
-	}
-	if(Set.back()->zIndex <= rGameObject->zIndex){
-		Set.push_back(GameObjectPtr(rGameObject));
-	}else if(Set.front()->zIndex >= rGameObject->zIndex){
-		Set.insert(Set.begin(), GameObjectPtr(rGameObject));
-	}else{
-		for(GameObjectsVector::iterator mGameObjectIter = Set.begin(); mGameObjectIter != Set.end(); mGameObjectIter++){
-			if((*mGameObjectIter)->zIndex < rGameObject->zIndex){
-				Set.insert(mGameObjectIter, rGameObject);
-				break;
 			}
 		}
 	}

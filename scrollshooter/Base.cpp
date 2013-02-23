@@ -17,3 +17,6 @@ Base::~Base(void){
 
 void Base::Update(void){
 }
+
+void Base::Draw(void){
+}

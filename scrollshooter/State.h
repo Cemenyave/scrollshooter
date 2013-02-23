@@ -1,21 +1,17 @@
 #pragma once
 #include "Base.h"
 #include "GameObject.h"
+#include "GameObjectGroup.h"
 
 class State:
 	public Base
 {
-	typedef std::shared_ptr<GameObject> GameObjectPtr;
-	typedef std::vector<GameObjectPtr> GameObjectsVector;
-
-	GameObjectsVector mGameObjects;
-	GameObjectsVector mBackgroundObjects;
-	GameObjectsVector mEffectObjects;
-	GameObjectPtr mBuffer; //buffer for passive sorting
-protected:
-	void GameObjectIteration(GameObjectsVector &Set, const int rAction);
-	void const InsertByZindex(GameObjectPtr const rGameObject, GameObjectsVector &Set);
 public:
+	std::shared_ptr<GameObjectGroup> rootGroup;
+	std::shared_ptr<GameObjectGroup> backgroundGroup;
+	std::shared_ptr<GameObjectGroup> gameObjectGroup;
+	std::shared_ptr<GameObjectGroup> uiGroup;
+
 	State(void);
 	virtual ~State(void);
 
@@ -28,15 +24,4 @@ public:
 	virtual void Resume(void);
 	virtual void Update(void);
 	virtual void Draw(void);
-
-	template <class _Type> std::shared_ptr<_Type> GameObjectFactory(const int rType){
-		std::shared_ptr<_Type> temp = std::shared_ptr<_Type>(new _Type);
-		AddGameObject(temp, rType);
-		return temp;
-	};
-	
-	void AddGameObject(GameObjectPtr rGameObject, const int rType);
-	void RemoveGameObject(GameObject *rGameObject);
-	void RemoveAllGameObjects();
-	void ClearGameObjectsVector(GameObjectsVector &Set);
 };

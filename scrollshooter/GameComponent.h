@@ -4,12 +4,15 @@ class GameComponent :
 	public Base
 {
 public:
+	int priority;
+	std::shared_ptr<GameComponent> parent;
 	GameComponent(void);
 	~GameComponent(void);
 
-	virtual void Add(void);
-	virtual void Remove(void);
+	virtual void Add(std::shared_ptr<GameComponent> newItem);;
+	virtual void Remove(std::shared_ptr<GameComponent> elemForErase);;
 	virtual void GetChild(void);
+	virtual bool HasChild(void);
 	void Update(void);
 	void Draw(void);
 };
