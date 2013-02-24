@@ -13,10 +13,10 @@ public:
 	std::vector<gameIterator> stack;   
 
 	//methods
-	CompositeIterator(gameIterator topLevelIterator);
+	CompositeIterator(std::vector<gameComponentPtr> *collection);
 	~CompositeIterator(void);
 
-	std::shared_ptr<GameComponent> Next(void);
+	gameComponentPtr Next(void);
 	bool HasNext(void);
 	void Remvoe(void);
 };

@@ -7,6 +7,7 @@ class GameComponent :
 public:
 	int priority;
 	std::shared_ptr<GameComponent> parent;
+	Iterator myIterator;
 
 	GameComponent(void);
 	~GameComponent(void);

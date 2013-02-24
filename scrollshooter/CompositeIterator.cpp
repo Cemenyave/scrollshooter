@@ -2,7 +2,9 @@
 #include "CompositeIterator.h"
 
 
-CompositeIterator::CompositeIterator(std::vector<GameComponent>::iterator topLevelIterator){
+CompositeIterator::CompositeIterator(std::vector<gameComponentPtr> *collection):
+	Iterator(collection)
+{
 }
 
 

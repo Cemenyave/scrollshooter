@@ -1,16 +1,20 @@
 #pragma once
-#include "GameComponent.h"
+
+class GameComponent;
 
 //Base class for GameComponents Iterator
 class Iterator
 {
 public:
-	std::vector<std::shared_ptr<GameComponent>> collection;
+	typedef std::shared_ptr<GameComponent> gameComponentPtr;
 
-	Iterator(void);
+	std::vector<gameComponentPtr> *collection;
+	std::vector<gameComponentPtr>::iterator collectionIter;
+
+	Iterator(std::vector<gameComponentPtr> *rCollection);
 	virtual ~Iterator(void);
 
-	virtual std::shared_ptr<GameComponent> Next(void);
+	virtual gameComponentPtr Next(void);
 	virtual bool HasNext(void);
 	virtual void Remove(void);
 };
