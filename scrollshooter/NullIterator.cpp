@@ -2,7 +2,8 @@
 #include "NullIterator.h"
 
 
-NullIterator::NullIterator(void){
+NullIterator::NullIterator(void)	
+{
 }
 
 

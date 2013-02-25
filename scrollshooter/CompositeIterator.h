@@ -1,23 +1,24 @@
 #pragma once
-#include "GameComponent.h"
 #include "Iterator.h"
+#include "GameComponent.h"
 
-class CompositeIterator: 
+class CompositeIterator:
 	public Iterator
 {
 public:
 	//type definitions
-	typedef std::vector<std::shared_ptr<GameComponent>>::iterator gameIterator;
-	
+	typedef std::shared_ptr<std::vector<std::shared_ptr<GameComponent>>> collection;
+	typedef std::vector<std::shared_ptr<GameComponent>>::iterator collectionIter;
+
 	//members
-	std::vector<gameIterator> stack;   
+	std::vector<CompositeIterator> stack;
+	collectionIter currentIter;
+	collectionIter lastElement;
 
 	//methods
-	CompositeIterator(std::vector<gameComponentPtr> *collection);
+	CompositeIterator(std::vector<gameComponentPtr> *elementsVector);
 	~CompositeIterator(void);
 
-	gameComponentPtr Next(void);
+	std::shared_ptr<GameComponent> Next(void);
 	bool HasNext(void);
-	void Remvoe(void);
 };
-

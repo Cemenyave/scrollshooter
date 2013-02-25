@@ -1,17 +1,20 @@
 #pragma once
 #include "GameComponent.h"
+#include "CompositeIterator.h"
+
 class GameObjectGroup :
 	public GameComponent
 {
-	typedef std::shared_ptr<GameComponent> gameComponentPtr;
-
-	std::vector<gameComponentPtr> elements;
 public:
-	std::vector<gameComponentPtr>::iterator elemIter;
+	//members
+	CompositeIterator myIterator;
+	std::vector<gameComponentPtr> elements;
 
+	std::vector<gameComponentPtr>::iterator elemIter;
+	//methods
 	GameObjectGroup(void);
 	~GameObjectGroup(void);
-
+	Iterator CreateIterator(void);
 	void Add(std::shared_ptr<GameComponent> newItem);
 	void Remove(std::shared_ptr<GameComponent> elemForErase);
 	void GetChild(void);

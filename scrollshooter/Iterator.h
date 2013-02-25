@@ -2,16 +2,15 @@
 
 class GameComponent;
 
-//Base class for GameComponents Iterator
+//Base virtual class for GameComponents Iterator
 class Iterator
 {
 public:
+	//type definitions
 	typedef std::shared_ptr<GameComponent> gameComponentPtr;
 
-	std::vector<gameComponentPtr> *collection;
-	std::vector<gameComponentPtr>::iterator collectionIter;
-
-	Iterator(std::vector<gameComponentPtr> *rCollection);
+	//methods
+	Iterator(void);
 	virtual ~Iterator(void);
 
 	virtual gameComponentPtr Next(void);

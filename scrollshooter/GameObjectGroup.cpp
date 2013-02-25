@@ -10,6 +10,10 @@ GameObjectGroup::GameObjectGroup(void){
 GameObjectGroup::~GameObjectGroup(void){
 }
 
+Iterator GameObjectGroup::CreateIterator(void){
+	return CompositeIterator(&elements);
+}
+
 //Adds new item into group by his priority
 void GameObjectGroup::Add(std::shared_ptr<GameComponent> newItem){
 	if(elements.empty()){

@@ -4,8 +4,9 @@
 
 
 GameComponent::GameComponent(void):
-	priority(1),
-	parent(0)
+	priority(1)
+	//parent(0),
+	//myIterator(&elements)
 {
 
 }
@@ -15,15 +16,15 @@ GameComponent::~GameComponent(void){
 }
 
 void GameComponent::Add(std::shared_ptr<GameComponent> newItem){
-	throw new CL_Exception("Unsupported Member");
+	throw new CL_Exception("Unsupported Method");
 }
 
 void GameComponent::Remove(std::shared_ptr<GameComponent> elemForErase){
-	throw new CL_Exception("Unsupported Member");
+	throw new CL_Exception("Unsupported Method");
 }
 
 void GameComponent::GetChild(void){
-	throw new CL_Exception("Unsupported Member");
+	throw new CL_Exception("Unsupported Method");
 }
 
 bool GameComponent::HasChild(void){
@@ -31,5 +32,5 @@ bool GameComponent::HasChild(void){
 }
 
 Iterator GameComponent::CreateIterator(){
-	iterator = new NullIterator;
+	//myIterator = NullIterator(*elements);
 }
