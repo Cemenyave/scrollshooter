@@ -20,7 +20,5 @@ public:
 	virtual void GetChild(void);
 	virtual bool HasChild(void);
 	virtual Iterator CreateIterator();
-	void Update(void);
-	void Draw(void);
 };
 

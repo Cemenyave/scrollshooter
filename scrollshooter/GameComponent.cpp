@@ -5,8 +5,6 @@
 
 GameComponent::GameComponent(void):
 	priority(1)
-	//parent(0),
-	//myIterator(&elements)
 {
 
 }
@@ -32,5 +30,5 @@ bool GameComponent::HasChild(void){
 }
 
 Iterator GameComponent::CreateIterator(){
-	//myIterator = NullIterator(*elements);
+	return NullIterator();
 }

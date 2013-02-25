@@ -9,6 +9,5 @@ public:
 
 	std::shared_ptr<GameComponent> Next(void);
 	bool HasNext(void);
-	void Remove(void);
 };
 

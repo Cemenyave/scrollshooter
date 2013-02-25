@@ -3,14 +3,16 @@
 
 
 
-Level::Level(void){
+Level::Level(void):
+	Player1(new Player),
+	oneEnemy(new Enemy)
+{
 }
 
 void Level::Initialize(void){
-	Player1 = GameObjectFactory<Player>(GAMEOBJECT);
+	gameObjectGroup->Add(Player1);
 	Player1->Spawn(350.0f, 550.0f);
-
-	oneEnemy = GameObjectFactory<Enemy>(GAMEOBJECT);
+	gameObjectGroup->Add(oneEnemy);
 	oneEnemy->Spawn(250.0f, 250.0f);
 }
 

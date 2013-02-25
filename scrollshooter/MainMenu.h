@@ -10,19 +10,24 @@ class MainMenu :
 	public State
 {
 protected:
+	//type definitions
+	enum{NEWGAMEBUTTON, CONTROLSBUTTON, CREDITSBUTTON, QUITBUTTON};
+
+	//members
 	std::shared_ptr<NewGameButton> mNewGameButton;
 	std::shared_ptr<ControlsButton> mControlsButton;
 	std::shared_ptr<CreditsButton> mCreditsButton;
 	std::shared_ptr<QuitButton> mQuitButton;
-	std::shared_ptr<GameObject> mNebula;
 	std::shared_ptr<GameObject> mFillBackGround;
 	std::vector<std::shared_ptr<GameObject>> mStars;
-	enum{NEWGAMEBUTTON, CONTROLSBUTTON, CREDITSBUTTON, QUITBUTTON};
 	int mCursor;
 	CL_Slot menuControl;
+
+	//methods
 	void GenerateBackground(void);
 	void GenerateMenu(void);
 public:
+	//methods
 	MainMenu(void);
 	~MainMenu(void);
 

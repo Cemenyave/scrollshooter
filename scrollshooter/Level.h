@@ -14,4 +14,3 @@ public:
 	void Initialize(void);
 	void Update(void);
 };
-

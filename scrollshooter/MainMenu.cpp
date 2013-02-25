@@ -6,7 +6,16 @@
 #include "Level.h"
 #include "DebugTool.h"
 
-MainMenu::MainMenu(void){
+MainMenu::MainMenu(void):
+	mNewGameButton(new NewGameButton),
+	mControlsButton(new ControlsButton),
+	mCreditsButton(new CreditsButton),
+	mQuitButton(new QuitButton),
+	mFillBackGround(new GameObject),
+	mStars(),
+	mCursor(0),
+	menuControl()
+{
 	
 }
 
@@ -42,14 +51,18 @@ void MainMenu::Cleanup(void){
 
 void MainMenu::GenerateBackground(void){
 	Engine &ObjEngine = Engine::GetEngine();
-	mFillBackGround = GameObjectFactory<GameObject>(BACKGROUND);
+	mFillBackGround->priority = 1;
 	mFillBackGround->width = (float)ObjEngine.windowWidth;
 	mFillBackGround->height = (float)ObjEngine.windowHeight;
 	mFillBackGround->color = CL_Colorf::black;
+	backgroundGroup->Add(mFillBackGround);
 	mFillBackGround->Spawn(0, 0);
 
 	for(int i = 0; i < 30; i++){
-		mStars.push_back(GameObjectFactory<Star>(BACKGROUND));
+		std::shared_ptr<Star> star = std::shared_ptr<Star>(new Star);
+		star->priority = 2;
+		backgroundGroup->Add(star);
+		mStars.push_back(std::shared_ptr<Star>(new Star));
 		mStars.back()->Spawn((float)(rand() % (ObjEngine.windowWidth - 40) + 20), (float)(rand() % (ObjEngine.windowHeight - 40) + 20));
 	}
 }
@@ -59,20 +72,20 @@ void MainMenu::GenerateMenu(void){
 	menuControl = keyboard.sig_key_down().connect(this, &MainMenu::NavigationHandler);
 	menuControl.enable();
 
-	mNewGameButton = GameObjectFactory<NewGameButton>(GAMEOBJECT);
+	uiGroup->Add(mNewGameButton);
 	mNewGameButton->Spawn(220.0f, 150.0f);
 	mNewGameButton->SetHandler(this, &MainMenu::NewGameHandler);
 	mNewGameButton->Hover();
 
-	mControlsButton = GameObjectFactory<ControlsButton>(GAMEOBJECT);
+	uiGroup->Add(mControlsButton);
 	mControlsButton->Spawn(220.0f, 200.0f);
 	mControlsButton->SetHandler(this, &MainMenu::ControlsHandler);
 
-	mCreditsButton = GameObjectFactory<CreditsButton>(GAMEOBJECT);
+	uiGroup->Add(mCreditsButton);;
 	mCreditsButton->Spawn(220.0f, 250.0f);
 	mCreditsButton->SetHandler(this, &MainMenu::CreditsHandler);
 
-	mQuitButton = GameObjectFactory<QuitButton>(GAMEOBJECT);
+	uiGroup->Add(mQuitButton);
 	mQuitButton->Spawn(220.0f, 300.0f);
 	mQuitButton->SetHandler(this, &MainMenu::QuitHandler);
 }

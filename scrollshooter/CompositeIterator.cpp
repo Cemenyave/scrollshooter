@@ -14,27 +14,37 @@ CompositeIterator::~CompositeIterator(void){
 
 std::shared_ptr<GameComponent> CompositeIterator::Next(void){
 	if(HasNext()){
-		CompositeIterator iter = (CompositeIterator)stack.back();
+		Iterator iter = (Iterator)stack.back();
 		CompositeIterator * cIter = dynamic_cast<CompositeIterator*>(&iter);
-		std::shared_ptr<GameComponent> component = *(++cIter->currentIter);
-		GameObjectGroup* group = dynamic_cast<GameObjectGroup*>(component.get());
-		if(group){
-			stack.push_back(group->CreateIterator());
+		if(cIter){
+			std::shared_ptr<GameComponent> component = *(++cIter->currentIter);
+			GameObjectGroup* group = dynamic_cast<GameObjectGroup*>(component.get());
+			if(group){
+				stack.push_back(group->CreateIterator());
+			}
+			return component;
+		}else{
+			return iter.Next();
 		}
-		return component;
 	}
+	throw new CL_Exception("No more element");
 }
 
 bool CompositeIterator::HasNext(void){
 	if(stack.empty()){
 		return false;
 	}else{
-		CompositeIterator *iter = &stack.back();
-		if(iter->currentIter != iter->lastElement){
-			return true;
+		Iterator *iter = &stack.back();
+		CompositeIterator *cIter = dynamic_cast<CompositeIterator*>(iter);
+		if(cIter){
+			if(cIter->currentIter != cIter->lastElement){
+				return true;
+			}else{
+				stack.pop_back();
+				return stack.back().HasNext();
+			}
 		}else{
-			stack.pop_back();
-			return stack.back().HasNext();
+			return iter->HasNext();
 		}
 	}
 }

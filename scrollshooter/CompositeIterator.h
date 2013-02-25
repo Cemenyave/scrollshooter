@@ -11,7 +11,7 @@ public:
 	typedef std::vector<std::shared_ptr<GameComponent>>::iterator collectionIter;
 
 	//members
-	std::vector<CompositeIterator> stack;
+	std::vector<Iterator> stack;
 	collectionIter currentIter;
 	collectionIter lastElement;
 

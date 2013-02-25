@@ -61,14 +61,16 @@ void GameObjectGroup::ClearGroup(void){
 
 void GameObjectGroup::Update(void){
 	GameComponent::Update();
-	for(elemIter = elements.begin(); elemIter != elements.end(); elemIter++){
-		(*elemIter)->Update();
+	Iterator iter = CreateIterator();
+	while(iter.HasNext()){
+		iter.Next()->Update();
 	}
 }
 
 void GameObjectGroup::Draw(void){
 	GameComponent::Draw();
-	for(elemIter = elements.begin(); elemIter != elements.end(); elemIter++){
-		(*elemIter)->Draw();
+	Iterator iter = CreateIterator();
+	while(iter.HasNext()){
+		iter.Next()->Draw();
 	}
 }
