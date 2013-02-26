@@ -20,7 +20,7 @@ public:
 	GameObject(void);
 	virtual ~GameObject(void);
 
-	Iterator CreateIterator(void);
+	Iterator *CreateIterator(void);
 	virtual bool Spawn(const float rCoordX, const float rCoordY);
 	virtual void Draw(void);
 	virtual void Destroy(void);

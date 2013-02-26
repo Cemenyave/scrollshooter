@@ -19,8 +19,8 @@ GameObject::GameObject(void):
 
 GameObject::~GameObject(){}
 
-Iterator GameObject::CreateIterator(void){
-	return NullIterator();
+Iterator *GameObject::CreateIterator(void){
+	return new NullIterator();
 }
 
 bool GameObject::Spawn(float rCoordX, float rCoordY){

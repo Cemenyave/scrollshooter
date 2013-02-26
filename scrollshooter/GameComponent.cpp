@@ -29,6 +29,6 @@ bool GameComponent::HasChild(void){
 	return false;
 }
 
-Iterator GameComponent::CreateIterator(){
-	return NullIterator();
+Iterator *GameComponent::CreateIterator(){
+	return new NullIterator();
 }

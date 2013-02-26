@@ -62,7 +62,7 @@ void MainMenu::GenerateBackground(void){
 		std::shared_ptr<Star> star = std::shared_ptr<Star>(new Star);
 		star->priority = 2;
 		backgroundGroup->Add(star);
-		mStars.push_back(std::shared_ptr<Star>(new Star));
+		mStars.push_back(star);
 		mStars.back()->Spawn((float)(rand() % (ObjEngine.windowWidth - 40) + 20), (float)(rand() % (ObjEngine.windowHeight - 40) + 20));
 	}
 }

@@ -19,6 +19,6 @@ public:
 	virtual void Remove(std::shared_ptr<GameComponent> elemForErase);
 	virtual void GetChild(void);
 	virtual bool HasChild(void);
-	virtual Iterator CreateIterator();
+	virtual Iterator *CreateIterator();
 };
 

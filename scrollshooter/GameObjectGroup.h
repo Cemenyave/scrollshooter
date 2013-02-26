@@ -13,7 +13,7 @@ public:
 	//methods
 	GameObjectGroup(void);
 	~GameObjectGroup(void);
-	Iterator CreateIterator(void);
+	Iterator *CreateIterator(void);
 	void Add(std::shared_ptr<GameComponent> newItem);
 	void Remove(std::shared_ptr<GameComponent> elemForErase);
 	bool HasChilde(void);

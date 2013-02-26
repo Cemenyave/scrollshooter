@@ -10,8 +10,8 @@ GameObjectGroup::GameObjectGroup(void){
 GameObjectGroup::~GameObjectGroup(void){
 }
 
-Iterator GameObjectGroup::CreateIterator(void){
-	return CompositeIterator(&elements);
+Iterator *GameObjectGroup::CreateIterator(void){
+	return new CompositeIterator(&elements);
 }
 
 //Adds new item into group by his priority
@@ -61,16 +61,14 @@ void GameObjectGroup::ClearGroup(void){
 
 void GameObjectGroup::Update(void){
 	GameComponent::Update();
-	Iterator iter = CreateIterator();
-	while(iter.HasNext()){
-		iter.Next()->Update();
+	for(elemIter = elements.begin(); elemIter != elements.end(); elemIter++){
+		(*elemIter)->Update();
 	}
 }
 
 void GameObjectGroup::Draw(void){
 	GameComponent::Draw();
-	Iterator iter = CreateIterator();
-	while(iter.HasNext()){
-		iter.Next()->Draw();
+	for(elemIter = elements.begin(); elemIter != elements.end(); elemIter++){
+		(*elemIter)->Draw();
 	}
 }
