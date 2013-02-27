@@ -19,6 +19,8 @@ public:
 	bool HasChilde(void);
 	void ClearGroup(void);
 	void Update(void);
+	virtual void UpdateHook(gameComponentPtr);
 	void Draw(void);
+	virtual void DrawHook(gameComponentPtr);
 };
 

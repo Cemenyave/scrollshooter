@@ -4,10 +4,14 @@
 #include "DebugTool.h"
 
 
-GameObjectGroup::GameObjectGroup(void){
+GameObjectGroup::GameObjectGroup(void):
+	elements(),
+	elemIter()
+{
 }
 
 GameObjectGroup::~GameObjectGroup(void){
+	ClearGroup();
 }
 
 Iterator *GameObjectGroup::CreateIterator(void){
@@ -56,19 +60,35 @@ void GameObjectGroup::Remove(std::shared_ptr<GameComponent> elemForRemove){
 }
 
 void GameObjectGroup::ClearGroup(void){
-
+	while(!elements.empty()){
+		GameObjectGroup *group = dynamic_cast<GameObjectGroup *>(elements.back().get()); 
+		if(group){
+			group->ClearGroup();
+		}
+		elements.pop_back();
+	}
 }
 
 void GameObjectGroup::Update(void){
 	GameComponent::Update();
 	for(elemIter = elements.begin(); elemIter != elements.end(); elemIter++){
 		(*elemIter)->Update();
+		UpdateHook((*elemIter));
 	}
+}
+
+void GameObjectGroup::UpdateHook(gameComponentPtr rGameObject){
+	return;
 }
 
 void GameObjectGroup::Draw(void){
 	GameComponent::Draw();
 	for(elemIter = elements.begin(); elemIter != elements.end(); elemIter++){
 		(*elemIter)->Draw();
+		DrawHook((*elemIter));
 	}
+}
+
+void GameObjectGroup::DrawHook(gameComponentPtr rGameObject){
+	return;
 }
